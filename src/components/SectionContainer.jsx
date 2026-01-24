@@ -40,6 +40,7 @@ import Experience from './Experience'
 import TeslaProjects from './TeslaProjects'
 import HeroProjects from './HeroProjects'
 import AcademicProjects from './AcademicProjects'
+import Projects from './Projects' // Legacy fallback
 import Skills from './Skills'
 import Contact from './Contact'
 
@@ -54,6 +55,7 @@ const SECTION_COMPONENTS = {
     teslaProjects: { component: TeslaProjects, name: 'Tesla Projects' },
     heroProjects: { component: HeroProjects, name: 'Hero MotoCorp Projects' },
     academicProjects: { component: AcademicProjects, name: 'Academic Projects' },
+    projects: { component: Projects, name: 'All Projects (Legacy)' }, // Fallback for old cached layout
     skills: { component: Skills, name: 'Skills' },
     contact: { component: Contact, name: 'Contact' },
 }
