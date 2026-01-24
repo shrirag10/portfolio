@@ -47,7 +47,7 @@ function Navbar() {
             <button className="navbar-link" onClick={() => scrollToSection('experience')}>
               <EditableText path="navbar.link2" defaultValue="Experience" />
             </button>
-            <button className="navbar-link" onClick={() => scrollToSection('projects')}>
+            <button className="navbar-link" onClick={() => scrollToSection('teslaProjects')}>
               <EditableText path="navbar.link3" defaultValue="Projects" />
             </button>
             <button className="navbar-link" onClick={() => scrollToSection('skills')}>
