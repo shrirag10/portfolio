@@ -15,7 +15,9 @@ const DEFAULT_SECTIONS = [
   { id: 'hero', name: 'Hero Banner', icon: '🏠', visible: true },
   { id: 'about', name: 'About Section', icon: '👤', visible: true },
   { id: 'experience', name: 'Experience', icon: '💼', visible: true },
-  { id: 'projects', name: 'Projects', icon: '📁', visible: true },
+  { id: 'teslaProjects', name: 'Tesla Projects', icon: '🚗', visible: true },
+  { id: 'heroProjects', name: 'Hero MotoCorp Projects', icon: '🏍️', visible: true },
+  { id: 'academicProjects', name: 'Academic Projects', icon: '🎓', visible: true },
   { id: 'skills', name: 'Skills', icon: '⚡', visible: true },
   { id: 'contact', name: 'Contact', icon: '✉️', visible: true },
 ]

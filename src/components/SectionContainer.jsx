@@ -37,7 +37,9 @@ import SortableSection from './SortableSection'
 import Hero from './Hero'
 import About from './About'
 import Experience from './Experience'
-import Projects from './Projects'
+import TeslaProjects from './TeslaProjects'
+import HeroProjects from './HeroProjects'
+import AcademicProjects from './AcademicProjects'
 import Skills from './Skills'
 import Contact from './Contact'
 
@@ -49,7 +51,9 @@ const SECTION_COMPONENTS = {
     hero: { component: Hero, name: 'Hero Banner' },
     about: { component: About, name: 'About' },
     experience: { component: Experience, name: 'Experience' },
-    projects: { component: Projects, name: 'Projects' },
+    teslaProjects: { component: TeslaProjects, name: 'Tesla Projects' },
+    heroProjects: { component: HeroProjects, name: 'Hero MotoCorp Projects' },
+    academicProjects: { component: AcademicProjects, name: 'Academic Projects' },
     skills: { component: Skills, name: 'Skills' },
     contact: { component: Contact, name: 'Contact' },
 }
