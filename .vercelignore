@@ -1,0 +1,8 @@
+# Ignore large project content assets
+src/assets/Projects content/
+
+# Dependencies
+node_modules/
+
+# Build output
+dist/
