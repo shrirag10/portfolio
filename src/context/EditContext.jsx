@@ -5,7 +5,7 @@ const EditContext = createContext()
 
 const CONTENT_STORAGE_KEY = 'portfolio_content_edits'
 const STYLE_STORAGE_KEY = 'portfolio_style_edits'
-const SECTIONS_STORAGE_KEY = 'portfolio_sections'
+const SECTIONS_STORAGE_KEY = 'portfolio_sections_v2'
 const PASSWORD_STORAGE_KEY = 'portfolio_edit_password'
 const DEBOUNCE_DELAY = 500 // ms
 const CLOUD_SYNC_DELAY = 2000 // ms - longer delay for cloud sync
@@ -132,31 +132,7 @@ export function EditProvider({ children }) {
 
         // Validate sections structure
         if (Array.isArray(savedSections) && savedSections.every(s => s.id && s.name)) {
-          // MIGRATION: Check if we have the old "projects" section and not the new ones
-          const hasOldProjects = savedSections.some(s => s.id === 'projects')
-          const hasNewSections = savedSections.some(s => s.id === 'teslaProjects')
-
-          if (hasOldProjects && !hasNewSections) {
-            console.log('Migrating: Replacing old projects section with new sections')
-            // Replace 'projects' with the new separate sections
-            const newSections = []
-            for (const section of savedSections) {
-              if (section.id === 'projects') {
-                newSections.push(
-                  { id: 'teslaProjects', name: 'Tesla Projects', icon: '🚗', visible: true },
-                  { id: 'heroProjects', name: 'Hero MotoCorp Projects', icon: '🏍️', visible: true },
-                  { id: 'academicProjects', name: 'Academic Projects', icon: '🎓', visible: true }
-                )
-              } else {
-                newSections.push(section)
-              }
-            }
-            setSections(newSections)
-            // Force save the migrated sections
-            safeSetItem(SECTIONS_STORAGE_KEY, newSections)
-          } else {
-            setSections(savedSections)
-          }
+          setSections(savedSections)
         } else {
           console.warn('Invalid sections data, using defaults')
           setSections(DEFAULT_SECTIONS)
