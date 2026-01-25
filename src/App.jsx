@@ -35,6 +35,8 @@ function ViewportPreview({ children }) {
 import { AnimatePresence } from 'framer-motion'
 import { ScrollProgressBar, BackToTop, PageTransition } from './components/PremiumEffects'
 
+import CustomCursor from './components/CustomCursor'
+
 function AppContent() {
   const location = useLocation()
 
@@ -46,6 +48,7 @@ function AppContent() {
 
   return (
     <div className="app">
+      <CustomCursor />
       <ScrollProgressBar />
       <BackToTop />
       <EditModePanel />

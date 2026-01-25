@@ -16,6 +16,7 @@ const DEFAULT_SECTIONS = [
   { id: 'impact', name: 'Impact Highlights', icon: '📈', visible: true },
   { id: 'about', name: 'About Section', icon: '👤', visible: true },
   { id: 'experience', name: 'Experience', icon: '💼', visible: true },
+  { id: 'gallery', name: 'Project Gallery', icon: '🖼️', visible: true },
   { id: 'teslaProjects', name: 'Tesla Projects', icon: '🚗', visible: true },
   { id: 'heroProjects', name: 'Hero MotoCorp Projects', icon: '🏍️', visible: true },
   { id: 'academicProjects', name: 'Academic Projects', icon: '🎓', visible: true },
