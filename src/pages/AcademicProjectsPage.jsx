@@ -111,6 +111,7 @@ function AcademicProjectsPage() {
                 defaultTitleHighlight=" Insights"
                 showFilters={true}
                 showSearch={true}
+                hideHeader={true}
             />
         </div>
     )

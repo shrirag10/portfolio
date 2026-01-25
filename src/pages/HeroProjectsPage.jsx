@@ -123,6 +123,7 @@ function HeroProjectsPage() {
                 defaultTitleHighlight=" Projects"
                 showFilters={true}
                 showSearch={true}
+                hideHeader={true}
             />
         </div>
     )

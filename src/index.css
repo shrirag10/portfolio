@@ -5181,7 +5181,7 @@ body:has(.editor-toolbar.edit-mode-active) .navbar {
    ================================ */
 .hero-impact-cards {
   display: flex;
-  gap: 12px;
+  gap: 16px;
   margin-top: 32px;
   flex-wrap: wrap;
 }
@@ -5189,8 +5189,8 @@ body:has(.editor-toolbar.edit-mode-active) .navbar {
 .hero-impact-card {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 12px 18px;
+  gap: 12px;
+  padding: 16px 24px;
   background: var(--bg-secondary);
   border: 1px solid var(--border-subtle);
   border-radius: 12px;
@@ -5200,7 +5200,7 @@ body:has(.editor-toolbar.edit-mode-active) .navbar {
 .hero-impact-card:hover {
   transform: translateY(-2px);
   border-color: var(--card-color);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
 }
 
 .hero-impact-icon {
@@ -5385,6 +5385,7 @@ body:has(.editor-toolbar.edit-mode-active) .navbar {
   background: var(--bg-secondary);
   border: 1px solid var(--border-subtle);
   border-radius: 16px;
+  flex-wrap: wrap;
 }
 
 .project-search-input {

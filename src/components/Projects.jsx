@@ -23,7 +23,8 @@ function Projects({
   defaultTitle = 'Featured',
   defaultTitleHighlight = ' Robotics Projects',
   showFilters = true,
-  showSearch = false
+  showSearch = false,
+  hideHeader = false
 }) {
   const { getContent } = useEdit()
   const [activeFilter, setActiveFilter] = useState('all')
@@ -82,21 +83,23 @@ function Projects({
   return (
     <section className="projects section" id="projects">
       <div className="container">
-        <div className="section-header" style={{ textAlign: 'center', maxWidth: '600px', margin: '0 auto 48px' }}>
-          <p className="section-label" style={{ justifyContent: 'center' }}>Projects</p>
-          <h2 className="section-title">
-            <EditableText
-              path={titleContext === 'home' ? 'projects.title' : `projects.${titleContext}.title`}
-              defaultValue={defaultTitle}
-            />
-            <span className="gradient-text">
+        {!hideHeader && (
+          <div className="section-header" style={{ textAlign: 'center', maxWidth: '600px', margin: '0 auto 48px' }}>
+            <p className="section-label" style={{ justifyContent: 'center' }}>Projects</p>
+            <h2 className="section-title">
               <EditableText
-                path={titleContext === 'home' ? 'projects.titleHighlight' : `projects.${titleContext}.titleHighlight`}
-                defaultValue={defaultTitleHighlight}
+                path={titleContext === 'home' ? 'projects.title' : `projects.${titleContext}.title`}
+                defaultValue={defaultTitle}
               />
-            </span>
-          </h2>
-        </div>
+              <span className="gradient-text">
+                <EditableText
+                  path={titleContext === 'home' ? 'projects.titleHighlight' : `projects.${titleContext}.titleHighlight`}
+                  defaultValue={defaultTitleHighlight}
+                />
+              </span>
+            </h2>
+          </div>
+        )}
 
         {/* Project Search Bar */}
         {showSearch && (
