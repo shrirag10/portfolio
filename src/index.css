@@ -1,3 +1,12 @@
+/* Visibility Utilities - Defaults (Desktop) */
+.mobile-only {
+  display: none !important;
+}
+
+.desktop-only {
+  display: flex !important;
+}
+
 /* ================================
    CSS Variables & Theme
    ================================ */
@@ -5387,14 +5396,7 @@ body:has(.editor-toolbar.edit-mode-active) .navbar {
   color: var(--accent-primary) !important;
 }
 
-/* Visibility Utilities */
-.mobile-only {
-  display: none !important;
-}
 
-.desktop-only {
-  display: flex !important;
-}
 
 /* ================================
    Project Search/Filter Bar
