@@ -5246,12 +5246,9 @@ body:has(.editor-toolbar.edit-mode-active) .navbar {
 
 .hobbies-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 24px;
-  max-width: 800px;
-  /* Optional: limit width for better readability in single column */
-  margin: 0 auto;
-  /* Center the column */
+  width: 100%;
 }
 
 .hobby-card {
