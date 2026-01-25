@@ -2,9 +2,10 @@ import { ArrowRight, Download, ChevronDown } from 'lucide-react'
 import { personalInfo } from '../data/content'
 import { EditableText, EditableImage } from './Editable'
 import { useEdit } from '../context/EditContext'
+import TypewriterText from './TypewriterText'
 
 function Hero() {
-  const { getContent } = useEdit()
+  const { getContent, isEditMode } = useEdit()
 
   const scrollToProjects = () => {
     const element = document.getElementById('projects')
@@ -38,7 +39,15 @@ function Hero() {
                 <EditableText path="hero.firstName" defaultValue={personalInfo.name.split(' ')[0]} />
               </span>
               <br />
-              <EditableText path="hero.title" defaultValue={personalInfo.title} />
+              {isEditMode ? (
+                <EditableText path="hero.title" defaultValue={personalInfo.title} />
+              ) : (
+                <TypewriterText
+                  text={title}
+                  speed={80}
+                  delay={500}
+                />
+              )}
             </h1>
 
             <p className="hero-subtitle">

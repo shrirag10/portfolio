@@ -1766,6 +1766,18 @@ button {
   animation-delay: 0.5s;
 }
 
+@keyframes blink {
+
+  from,
+  to {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
 /* ================================
    Impact Cards
    ================================ */

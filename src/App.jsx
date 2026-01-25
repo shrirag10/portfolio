@@ -32,25 +32,34 @@ function ViewportPreview({ children }) {
   )
 }
 
+import { AnimatePresence } from 'framer-motion'
+import { ScrollProgressBar, BackToTop, PageTransition } from './components/PremiumEffects'
+
 function AppContent() {
   const location = useLocation()
 
   useEffect(() => {
     logVisit()
+    // Reset scroll position on route change
+    window.scrollTo(0, 0)
   }, [location.pathname])
 
   return (
     <div className="app">
+      <ScrollProgressBar />
+      <BackToTop />
       <EditModePanel />
       <ViewportPreview>
         <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/tesla" element={<TeslaProjectsPage />} />
-          <Route path="/hero" element={<HeroProjectsPage />} />
-          <Route path="/academic" element={<AcademicProjectsPage />} />
-          <Route path="/project/:id" element={<ProjectDetail />} />
-        </Routes>
+        <AnimatePresence mode="wait">
+          <Routes location={location} key={location.pathname}>
+            <Route path="/" element={<PageTransition><Home /></PageTransition>} />
+            <Route path="/tesla" element={<PageTransition><TeslaProjectsPage /></PageTransition>} />
+            <Route path="/hero" element={<PageTransition><HeroProjectsPage /></PageTransition>} />
+            <Route path="/academic" element={<PageTransition><AcademicProjectsPage /></PageTransition>} />
+            <Route path="/project/:id" element={<PageTransition><ProjectDetail /></PageTransition>} />
+          </Routes>
+        </AnimatePresence>
         <Footer />
       </ViewportPreview>
     </div>
