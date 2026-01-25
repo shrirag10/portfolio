@@ -12,7 +12,7 @@ function Hero() {
   const [resumeModalOpen, setResumeModalOpen] = useState(false)
 
   const scrollToProjects = () => {
-    const element = document.getElementById('teslaProjects')
+    const element = document.getElementById('experience')
     if (element) {
       const navbarHeight = 80
       const elementPosition = element.getBoundingClientRect().top + window.pageYOffset
