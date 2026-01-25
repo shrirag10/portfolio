@@ -179,11 +179,52 @@ function Navbar() {
             <button className="navbar-link" onClick={() => scrollToSection('contact')}>
               <EditableText path="navbar.link5" defaultValue="Contact" />
             </button>
+
+            {/* Mobile-Only Theme Toggle & Resume */}
+            <div className="mobile-menu-actions mobile-only" style={{ display: 'none', flexDirection: 'column', gap: '16px', alignItems: 'center', width: '100%', marginTop: '16px' }}>
+              <button
+                className="theme-toggle"
+                onClick={toggleTheme}
+                aria-label="Toggle theme"
+                style={{
+                  background: 'var(--bg-tertiary)',
+                  border: '1px solid var(--border-subtle)',
+                  borderRadius: '10px',
+                  padding: '8px 24px',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: 'var(--text-primary)',
+                  width: 'fit-content'
+                }}
+              >
+                {theme === 'dark' ? (
+                  <>
+                    <Sun size={18} style={{ marginRight: '8px' }} /> Light Mode
+                  </>
+                ) : (
+                  <>
+                    <Moon size={18} style={{ marginRight: '8px' }} /> Dark Mode
+                  </>
+                )}
+              </button>
+
+              <a
+                href={personalInfo.resumeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary"
+                style={{ width: '80%', textAlign: 'center' }}
+              >
+                <EditableText path="navbar.cta" defaultValue="Resume" />
+              </a>
+            </div>
           </div>
 
-          {/* Theme Toggle Button */}
+          {/* Desktop-Only Theme Toggle Button */}
           <button
-            className="theme-toggle"
+            className="theme-toggle desktop-only"
             onClick={toggleTheme}
             aria-label="Toggle theme"
             style={{
@@ -207,7 +248,7 @@ function Navbar() {
             href={personalInfo.resumeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="navbar-cta"
+            className="navbar-cta desktop-only"
           >
             <EditableText path="navbar.cta" defaultValue="Resume" />
           </a>

@@ -1631,6 +1631,9 @@ button {
     visibility: hidden;
     transform: translateX(100%);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    /* Fix overlay blocking touches */
+    will-change: transform, opacity;
   }
 
   .navbar-links.mobile-open {
@@ -1638,6 +1641,17 @@ button {
     visibility: visible;
     transform: translateX(0);
     display: flex;
+    pointer-events: auto;
+    /* Enable touches when open */
+  }
+
+  /* Toggle button visibility on mobile */
+  .mobile-only {
+    display: flex !important;
+  }
+
+  .desktop-only {
+    display: none !important;
   }
 
   /* Mobile Nav Links */
@@ -5371,6 +5385,15 @@ body:has(.editor-toolbar.edit-mode-active) .navbar {
 
 .navbar-link.active {
   color: var(--accent-primary) !important;
+}
+
+/* Visibility Utilities */
+.mobile-only {
+  display: none !important;
+}
+
+.desktop-only {
+  display: flex !important;
 }
 
 /* ================================
