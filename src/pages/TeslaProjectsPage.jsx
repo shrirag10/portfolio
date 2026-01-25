@@ -135,7 +135,8 @@ function TeslaProjectsPage() {
                 titleContext="tesla-page"
                 defaultTitle="Tesla"
                 defaultTitleHighlight=" Projects"
-                showFilters={false}
+                showFilters={true}
+                showSearch={true}
             />
         </div>
     )

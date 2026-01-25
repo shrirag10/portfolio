@@ -109,7 +109,8 @@ function AcademicProjectsPage() {
                 titleContext="academic-page"
                 defaultTitle="Academic"
                 defaultTitleHighlight=" Insights"
-                showFilters={false}
+                showFilters={true}
+                showSearch={true}
             />
         </div>
     )

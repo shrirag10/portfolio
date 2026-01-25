@@ -121,7 +121,8 @@ function HeroProjectsPage() {
                 titleContext="hero-page"
                 defaultTitle="Hero MotoCorp"
                 defaultTitleHighlight=" Projects"
-                showFilters={false}
+                showFilters={true}
+                showSearch={true}
             />
         </div>
     )

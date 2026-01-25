@@ -4,6 +4,7 @@ import { ArrowRight, Building2, GraduationCap } from 'lucide-react'
 import { projects } from '../data/content'
 import { EditableText, EditableTags, EditableImage } from './Editable'
 import { useEdit } from '../context/EditContext'
+import ProjectSearchBar from './ProjectSearchBar'
 
 // Subdomain categories for filtering
 const subdomains = [
@@ -21,10 +22,12 @@ function Projects({
   titleContext = 'home',
   defaultTitle = 'Featured',
   defaultTitleHighlight = ' Robotics Projects',
-  showFilters = true
+  showFilters = true,
+  showSearch = false
 }) {
   const { getContent } = useEdit()
   const [activeFilter, setActiveFilter] = useState('all')
+  const [searchTerm, setSearchTerm] = useState('')
 
   // Filter existing projects by the passed prop filter (e.g. company or type)
   const baseProjects = projects.filter(p => {
@@ -50,10 +53,31 @@ function Projects({
     return 0
   })
 
-  // Filter projects by subdomain (local state) - only if filters enabled
-  const filteredProjects = !showFilters || activeFilter === 'all'
-    ? sortedProjects
-    : sortedProjects.filter(p => p.subdomain === activeFilter)
+  // Filter projects by subdomain and search term
+  const filteredProjects = sortedProjects.filter(p => {
+    // 1. Subdomain Filter
+    if (showFilters && activeFilter !== 'all' && p.subdomain !== activeFilter) {
+      return false
+    }
+
+    // 2. Search Filter
+    if (searchTerm) {
+      const query = searchTerm.toLowerCase()
+      const searchFields = [
+        p.title,
+        p.description,
+        p.category,
+        p.subdomain,
+        ...(p.tech || [])
+      ]
+
+      return searchFields.some(field =>
+        field && field.toString().toLowerCase().includes(query)
+      )
+    }
+
+    return true
+  })
 
   return (
     <section className="projects section" id="projects">
@@ -74,8 +98,18 @@ function Projects({
           </h2>
         </div>
 
-        {/* Subdomain Filter Tabs */}
-        {showFilters && (
+        {/* Project Search Bar */}
+        {showSearch && (
+          <ProjectSearchBar
+            onSearch={setSearchTerm}
+            onFilter={(id) => setActiveFilter(id)}
+            categories={subdomains}
+            activeCategory={activeFilter}
+          />
+        )}
+
+        {/* Legacy Subdomain Filter Tabs (only if Search is disabled, otherwise SearchBar handles it) */}
+        {showFilters && !showSearch && (
           <div className="project-filters" style={{
             display: 'flex',
             flexWrap: 'wrap',
