@@ -1,4 +1,4 @@
-import { MapPin } from 'lucide-react'
+import { MapPin, Building2 } from 'lucide-react'
 import { experiences } from '../data/content'
 import { EditableText, EditableList, EditableTags } from './Editable'
 import { useEdit } from '../context/EditContext'
@@ -10,7 +10,7 @@ function Experience() {
     <section className="experience section" id="experience">
       <div className="container">
         <div className="section-header" style={{ textAlign: 'center', maxWidth: '600px', margin: '0 auto 64px' }}>
-          <p className="section-label" style={{ justifyContent: 'center' }}>Experience</p>
+          <p className="section-label" style={{ justifyContent: 'center' }}>My Journey</p>
           <h2 className="section-title">
             <EditableText path="experience.title" defaultValue="Where I've Built" />
             <span className="gradient-text">
@@ -23,33 +23,52 @@ function Experience() {
           {experiences.map((exp, index) => (
             <div className="experience-item" key={exp.id}>
               <div className="experience-dot"></div>
-              <p className="experience-date">
-                <EditableText 
-                  path={`experience.${exp.id}.date`} 
+
+              {/* Enhanced Date Badge */}
+              <div className="experience-date-badge">
+                <EditableText
+                  path={`experience.${exp.id}.date`}
                   defaultValue={exp.date}
                 />
-              </p>
-              
+              </div>
+
               <div className="experience-card">
                 <div className="experience-header">
-                  <div>
-                    <h3 className="experience-title">
-                      <EditableText 
-                        path={`experience.${exp.id}.title`} 
-                        defaultValue={exp.title}
-                      />
-                    </h3>
-                    <p className="experience-company">
-                      <EditableText 
-                        path={`experience.${exp.id}.company`} 
-                        defaultValue={exp.company}
-                      />
-                    </p>
+                  <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start', flex: 1 }}>
+                    {/* Company Photo/Logo */}
+                    {exp.companyPhoto && (
+                      <div className="experience-company-photo">
+                        <img
+                          src={exp.companyPhoto}
+                          alt={exp.company}
+                          onError={(e) => {
+                            e.target.style.display = 'none';
+                            e.target.parentElement.innerHTML = '<div class="experience-company-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></div>';
+                          }}
+                        />
+                      </div>
+                    )}
+
+                    <div style={{ flex: 1 }}>
+                      <h3 className="experience-title">
+                        <EditableText
+                          path={`experience.${exp.id}.title`}
+                          defaultValue={exp.title}
+                        />
+                      </h3>
+                      <p className="experience-company">
+                        <EditableText
+                          path={`experience.${exp.id}.company`}
+                          defaultValue={exp.company}
+                        />
+                      </p>
+                    </div>
                   </div>
+
                   <div className="experience-location">
                     <MapPin size={14} />
-                    <EditableText 
-                      path={`experience.${exp.id}.location`} 
+                    <EditableText
+                      path={`experience.${exp.id}.location`}
                       defaultValue={exp.location}
                     />
                   </div>
@@ -58,8 +77,8 @@ function Experience() {
                 <ul className="experience-description">
                   {(getContent(`experience.${exp.id}.description`, exp.description) || exp.description).map((item, i) => (
                     <li key={i}>
-                      <EditableText 
-                        path={`experience.${exp.id}.description.${i}`} 
+                      <EditableText
+                        path={`experience.${exp.id}.description.${i}`}
                         defaultValue={item}
                         multiline={true}
                       />
@@ -67,8 +86,8 @@ function Experience() {
                   ))}
                 </ul>
 
-                <EditableTags 
-                  path={`experience.${exp.id}.tags`} 
+                <EditableTags
+                  path={`experience.${exp.id}.tags`}
                   defaultValue={exp.tags}
                   className="experience-tags"
                 />

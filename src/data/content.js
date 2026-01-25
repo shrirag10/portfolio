@@ -23,6 +23,7 @@ export const experiences = [
     company: "Tesla Inc.",
     location: "Fremont, CA",
     date: "April 2025 – December 2025",
+    companyPhoto: "/images/extracted/industrial/image13.jpg",
     description: [
       "Driving deployment of autonomous forklift AMRs using SLAM, LiDAR, and 3D pallet vision, projected to deliver $2.04M in cost savings",
       "Programmed AMR path planning using penalty-optimized Theta* algorithm, reducing routing complexity by 83%",
@@ -37,6 +38,7 @@ export const experiences = [
     company: "Hero MotoCorp Limited",
     location: "Tirupati, India",
     date: "2023 – 2024",
+    companyPhoto: "/images/extracted/industrial/image11.jpg",
     description: [
       "As a Robotics Engineer at Hero Motorsport's EV plant in the south of India, optimized production throughput through implementation of Automation and Robotics in the manufacturing plant",
       "Delivered 67% reduction in pallet unloading time by engineering zero-height pallet lifters",
@@ -51,6 +53,7 @@ export const experiences = [
     company: "Hero MotoCorp",
     location: "Neemrana, India",
     date: "2023",
+    companyPhoto: "/images/extracted/industrial/image11.jpg",
     description: [
       "As a production engineer at Hero's EV battery pack division, learned about EV battery production processes",
       "Effectively managed production output and quality control measures",
@@ -64,6 +67,7 @@ export const experiences = [
     company: "Hero MotoCorp",
     location: "Neemrana, India",
     date: "2022 – 2023",
+    companyPhoto: "/images/extracted/industrial/image11.jpg",
     description: [
       "As a Graduate Engineer at Hero's completely automated Parts fulfillment center, optimized material movement using Robotics such as AMRs and RGVs",
       "Led initiatives that increased profitability by 23% through automation improvements",

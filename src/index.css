@@ -529,14 +529,19 @@ button {
   margin: 0 auto;
 }
 
+/* Enhanced gradient timeline */
 .experience-timeline::before {
   content: '';
   position: absolute;
   left: 0;
   top: 0;
   bottom: 0;
-  width: 2px;
-  background: linear-gradient(to bottom, var(--accent-primary), transparent);
+  width: 3px;
+  background: linear-gradient(to bottom,
+      var(--accent-primary),
+      rgba(99, 102, 241, 0.5),
+      transparent);
+  border-radius: 2px;
 }
 
 .experience-item {
@@ -549,22 +554,75 @@ button {
   padding-bottom: 0;
 }
 
+/* Enhanced dot with glow effect */
 .experience-dot {
   position: absolute;
-  left: -7px;
-  top: 0;
-  width: 16px;
-  height: 16px;
+  left: -8.5px;
+  top: 8px;
+  width: 20px;
+  height: 20px;
   background: var(--bg-primary);
   border: 3px solid var(--accent-primary);
   border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+  transition: all 0.3s ease;
 }
 
+.experience-item:hover .experience-dot {
+  transform: scale(1.2);
+  box-shadow: 0 0 0 8px rgba(59, 130, 246, 0.15);
+}
+
+/* New: Enhanced date badge */
+.experience-date-badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.15));
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.5px;
+}
+
+/* Old date style - kept for backward compatibility */
 .experience-date {
   font-family: var(--font-mono);
   font-size: 0.875rem;
   color: var(--accent-primary);
   margin-bottom: 8px;
+}
+
+/* New: Company photo/logo */
+.experience-company-photo {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: white;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--border-subtle);
+}
+
+.experience-company-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.experience-company-icon {
+  color: var(--accent-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .experience-card {
