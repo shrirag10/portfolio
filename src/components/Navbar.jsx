@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Menu, X, ChevronDown } from 'lucide-react'
+import { Menu, X, ChevronDown, Sun, Moon } from 'lucide-react'
 import { EditableText } from './Editable'
 import { useEdit } from '../context/EditContext'
 import { personalInfo } from '../data/content'
@@ -9,9 +9,22 @@ function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [projectsDropdownOpen, setProjectsDropdownOpen] = useState(false)
+  const [theme, setTheme] = useState(() => {
+    // Check localStorage first, then system preference
+    const saved = localStorage.getItem('portfolio-theme')
+    if (saved) return saved
+    return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+  })
   const location = useLocation()
   const isHome = location.pathname === '/'
   const { isEditMode } = useEdit()
+  const dropdownRef = useRef(null)
+
+  // Apply theme to document
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme)
+    localStorage.setItem('portfolio-theme', theme)
+  }, [theme])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,6 +32,17 @@ function Navbar() {
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setProjectsDropdownOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [])
 
   const scrollToSection = (sectionId) => {
@@ -31,6 +55,15 @@ function Navbar() {
       element.scrollIntoView({ behavior: 'smooth' })
     }
     setMobileOpen(false)
+  }
+
+  const toggleTheme = () => {
+    setTheme(prev => prev === 'dark' ? 'light' : 'dark')
+  }
+
+  const toggleDropdown = (e) => {
+    e.stopPropagation()
+    setProjectsDropdownOpen(prev => !prev)
   }
 
   return (
@@ -49,16 +82,15 @@ function Navbar() {
               <EditableText path="navbar.link2" defaultValue="Experience" />
             </button>
 
-            {/* Projects Dropdown */}
+            {/* Projects Dropdown - Click-based for persistence */}
             <div
+              ref={dropdownRef}
               className="navbar-dropdown"
-              onMouseEnter={() => setProjectsDropdownOpen(true)}
-              onMouseLeave={() => setProjectsDropdownOpen(false)}
               style={{ position: 'relative' }}
             >
               <button
                 className="navbar-link"
-                onClick={() => scrollToSection('teslaProjects')}
+                onClick={toggleDropdown}
                 style={{ display: 'flex', alignItems: 'center', gap: '4px' }}
               >
                 <EditableText path="navbar.link3" defaultValue="Projects" />
@@ -143,6 +175,28 @@ function Navbar() {
             </button>
           </div>
 
+          {/* Theme Toggle Button */}
+          <button
+            className="theme-toggle"
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+            style={{
+              background: 'var(--bg-tertiary)',
+              border: '1px solid var(--border-subtle)',
+              borderRadius: '10px',
+              padding: '8px',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: 'var(--text-primary)',
+              transition: 'all 0.3s ease',
+              marginRight: '12px'
+            }}
+          >
+            {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
+
           <a
             href={personalInfo.resumeUrl}
             target="_blank"
@@ -165,3 +219,4 @@ function Navbar() {
 }
 
 export default Navbar
+
