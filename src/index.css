@@ -5175,6 +5175,7 @@ body:has(.editor-toolbar.edit-mode-active) .navbar {
   background: var(--accent-primary);
   color: white;
 }
+
 /* ================================
    ManuFX-Style Hero Impact Cards
    ================================ */
@@ -5245,8 +5246,12 @@ body:has(.editor-toolbar.edit-mode-active) .navbar {
 
 .hobbies-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  max-width: 800px;
+  /* Optional: limit width for better readability in single column */
+  margin: 0 auto;
+  /* Center the column */
 }
 
 .hobby-card {
@@ -5730,27 +5735,27 @@ body:has(.editor-toolbar.edit-mode-active) .navbar {
   .hero-impact-cards {
     justify-content: center;
   }
-  
+
   .hero-impact-card {
     flex: 1 1 calc(50% - 12px);
     min-width: 140px;
   }
-  
+
   .career-timeline::before {
     left: 20px;
   }
-  
+
   .career-timeline-item,
   .career-timeline-item:nth-child(odd) {
     flex-direction: column;
     align-items: flex-start;
     padding-left: 50px;
   }
-  
+
   .career-timeline-dot {
     left: 20px;
   }
-  
+
   .career-timeline-content,
   .career-timeline-item:nth-child(odd) .career-timeline-content,
   .career-timeline-item:nth-child(even) .career-timeline-content {
