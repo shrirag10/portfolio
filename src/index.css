@@ -5380,21 +5380,23 @@ body:has(.editor-toolbar.edit-mode-active) .navbar {
 }
 
 /* ================================
-   Pill-shaped Nav Indicator
+   Pill-shaped Nav Indicator (Desktop Only)
    ================================ */
-.navbar-links {
-  position: relative;
-}
+@media (min-width: 769px) {
+  .navbar-links {
+    position: relative;
+  }
 
-.nav-pill-indicator {
-  position: absolute;
-  height: 32px;
-  background: var(--accent-glow);
-  border: 1px solid var(--accent-primary);
-  border-radius: 16px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  pointer-events: none;
-  z-index: -1;
+  .nav-pill-indicator {
+    position: absolute;
+    height: 32px;
+    background: var(--accent-glow);
+    border: 1px solid var(--accent-primary);
+    border-radius: 16px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    z-index: -1;
+  }
 }
 
 .navbar-link.active {
