@@ -189,6 +189,7 @@ export const projects = [
     tech: ["ROS2", "RTAB-Map", "ZED Camera", "SLAM", "Python"],
     date: "2024",
     role: "Lead Developer",
+    github: "https://github.com/shrirag10/3D-Mapping-RTAB-SLAM",
     details: {
       overview: "Built an autonomous robot mapping system using RTAB-Map SLAM with ZED Mini stereo camera in ROS2. The system creates drift-free maps in challenging GPS-denied environments.",
       challenge: "Testing in Northeastern University's tunnels revealed that mounting the camera on a rolling chair improved stability and accuracy compared to handheld use, though challenges like motion blur on carpets and algorithmic sensitivity persisted.",
@@ -213,7 +214,7 @@ export const projects = [
     tech: ["Python", "Kalman Filter", "MATLAB", "ROS", "GPS", "IMU"],
     date: "2024",
     role: "Lead Developer",
-    github: "https://github.com/shrirag10/sensor-fusion",
+    github: "https://github.com/shrirag10/Dead-Reckoning",
     details: {
       overview: "Developed a sensor fusion system combining GPS and IMU data through Extended Kalman Filtering for reliable vehicle positioning and dead reckoning capabilities.",
       challenge: "GPS signals can be unreliable in urban environments with multipath effects and signal blockage. IMU sensors accumulate drift over time. A robust fusion approach was needed for reliable positioning.",
@@ -238,7 +239,7 @@ export const projects = [
     tech: ["Python", "LLM", "A*", "PyTorch", "ROS2"],
     date: "March 2025 – April 2025",
     role: "Lead Developer",
-    github: "https://github.com/shrirag10/llm-astar",
+    github: "https://github.com/shrirag10/Improved-LLM-A-star",
     details: {
       overview: "Redesigned and improved the LLM-A* hybrid path planning system from the ground up, integrating refined LLM waypoint guidance with classical A* search for resource-efficient robot navigation.",
       challenge: "Traditional path planning algorithms can be computationally expensive, especially in complex environments. The goal was to leverage LLM reasoning capabilities to guide classical planners toward more efficient solutions.",

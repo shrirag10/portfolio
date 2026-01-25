@@ -42,6 +42,7 @@ import HeroProjects from './HeroProjects'
 import AcademicProjects from './AcademicProjects'
 import Projects from './Projects' // Legacy fallback
 import Skills from './Skills'
+import ImpactCards from './ImpactCards'
 import Contact from './Contact'
 
 /**
@@ -52,6 +53,7 @@ const SECTION_COMPONENTS = {
     hero: { component: Hero, name: 'Hero Banner' },
     about: { component: About, name: 'About' },
     experience: { component: Experience, name: 'Experience' },
+    impact: { component: ImpactCards, name: 'Impact Highlights' },
     teslaProjects: { component: TeslaProjects, name: 'Tesla Projects' },
     heroProjects: { component: HeroProjects, name: 'Hero MotoCorp Projects' },
     academicProjects: { component: AcademicProjects, name: 'Academic Projects' },

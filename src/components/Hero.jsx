@@ -1,4 +1,4 @@
-import { ArrowRight, Download } from 'lucide-react'
+import { ArrowRight, Download, ChevronDown } from 'lucide-react'
 import { personalInfo } from '../data/content'
 import { EditableText, EditableImage } from './Editable'
 import { useEdit } from '../context/EditContext'
@@ -26,8 +26,7 @@ function Hero() {
       <div className="container">
         <div className="hero-content">
           <div className="hero-text">
-            <div className="hero-badge">
-              <span className="hero-badge-dot"></span>
+            <div className="hero-badge pulse-dot" style={{ paddingLeft: '20px' }}>
               <EditableText
                 path="hero.badge"
                 defaultValue="Open to Robotics Engineer opportunities"
@@ -51,7 +50,7 @@ function Hero() {
             </p>
 
             <div className="hero-cta">
-              <button className="btn btn-primary" onClick={scrollToProjects}>
+              <button className="btn btn-primary glow-hover" onClick={scrollToProjects}>
                 View My Work
                 <ArrowRight size={18} />
               </button>
@@ -59,7 +58,7 @@ function Hero() {
                 href={personalInfo.resumeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn btn-secondary"
+                className="btn btn-secondary glow-hover"
               >
                 <Download size={18} />
                 Download Resume
@@ -106,6 +105,23 @@ function Hero() {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Bouncing Scroll Indicator */}
+      <div
+        className="scroll-indicator"
+        style={{
+          position: 'absolute',
+          bottom: '40px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          cursor: 'pointer',
+          opacity: 0.6,
+          transition: 'opacity 0.3s'
+        }}
+        onClick={scrollToProjects}
+      >
+        <ChevronDown size={32} color="var(--text-secondary)" />
       </div>
     </section>
   )

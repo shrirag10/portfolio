@@ -13,6 +13,7 @@ const CLOUD_SYNC_DELAY = 2000 // ms - longer delay for cloud sync
 // Default sections configuration
 const DEFAULT_SECTIONS = [
   { id: 'hero', name: 'Hero Banner', icon: '🏠', visible: true },
+  { id: 'impact', name: 'Impact Highlights', icon: '📈', visible: true },
   { id: 'about', name: 'About Section', icon: '👤', visible: true },
   { id: 'experience', name: 'Experience', icon: '💼', visible: true },
   { id: 'teslaProjects', name: 'Tesla Projects', icon: '🚗', visible: true },

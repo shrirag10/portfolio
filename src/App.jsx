@@ -5,6 +5,9 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './pages/Home'
 import ProjectDetail from './pages/ProjectDetail'
+import TeslaProjectsPage from './pages/TeslaProjectsPage'
+import HeroProjectsPage from './pages/HeroProjectsPage'
+import AcademicProjectsPage from './pages/AcademicProjectsPage'
 import EditModePanel from './components/EditModePanel'
 import ErrorBoundary from './components/ErrorBoundary'
 import { EditProvider, useEdit } from './context/EditContext'
@@ -43,6 +46,9 @@ function AppContent() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/tesla" element={<TeslaProjectsPage />} />
+          <Route path="/hero" element={<HeroProjectsPage />} />
+          <Route path="/academic" element={<AcademicProjectsPage />} />
           <Route path="/project/:id" element={<ProjectDetail />} />
         </Routes>
         <Footer />
