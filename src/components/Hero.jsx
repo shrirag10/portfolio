@@ -1,16 +1,25 @@
-import { ArrowRight, Download, ChevronDown } from 'lucide-react'
+import { useState } from 'react'
+import { ArrowRight, Download, ChevronDown, Eye } from 'lucide-react'
 import { personalInfo } from '../data/content'
 import { EditableText, EditableImage } from './Editable'
 import { useEdit } from '../context/EditContext'
 import TypewriterText from './TypewriterText'
+import HeroImpactCards from './HeroImpactCards'
+import ResumeModal from './ResumeModal'
 
 function Hero() {
   const { getContent, isEditMode } = useEdit()
+  const [resumeModalOpen, setResumeModalOpen] = useState(false)
 
   const scrollToProjects = () => {
-    const element = document.getElementById('projects')
+    const element = document.getElementById('teslaProjects')
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
+      const navbarHeight = 80
+      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset
+      window.scrollTo({
+        top: elementPosition - navbarHeight,
+        behavior: 'smooth'
+      })
     }
   }
 
@@ -63,43 +72,25 @@ function Hero() {
                 View My Work
                 <ArrowRight size={18} />
               </button>
-              <a
-                href={personalInfo.resumeUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                onClick={() => setResumeModalOpen(true)}
                 className="btn btn-secondary glow-hover"
               >
+                <Eye size={18} />
+                View Resume
+              </button>
+              <a
+                href={personalInfo.resumeUrl}
+                download
+                className="btn btn-secondary glow-hover"
+                style={{ padding: '12px 16px' }}
+              >
                 <Download size={18} />
-                Download Resume
               </a>
             </div>
 
-            <div className="hero-stats">
-              <div className="hero-stat">
-                <div className="hero-stat-value">
-                  <EditableText path="hero.stat1Value" defaultValue="$2M+" />
-                </div>
-                <div className="hero-stat-label">
-                  <EditableText path="hero.stat1Label" defaultValue="Cost Savings Delivered" />
-                </div>
-              </div>
-              <div className="hero-stat">
-                <div className="hero-stat-value">
-                  <EditableText path="hero.stat2Value" defaultValue="67%" />
-                </div>
-                <div className="hero-stat-label">
-                  <EditableText path="hero.stat2Label" defaultValue="Efficiency Improvement" />
-                </div>
-              </div>
-              <div className="hero-stat">
-                <div className="hero-stat-value">
-                  <EditableText path="hero.stat3Value" defaultValue="3+" />
-                </div>
-                <div className="hero-stat-label">
-                  <EditableText path="hero.stat3Label" defaultValue="Years Experience" />
-                </div>
-              </div>
-            </div>
+            {/* ManuFX-Style Impact Cards */}
+            <HeroImpactCards />
           </div>
 
           <div className="hero-image">
@@ -132,8 +123,15 @@ function Hero() {
       >
         <ChevronDown size={32} color="var(--text-secondary)" />
       </div>
+
+      {/* Resume Modal */}
+      <ResumeModal
+        isOpen={resumeModalOpen}
+        onClose={() => setResumeModalOpen(false)}
+      />
     </section>
   )
 }
 
 export default Hero
+

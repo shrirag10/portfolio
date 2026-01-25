@@ -2,6 +2,7 @@ import { Bot, Cpu, Navigation, Layers } from 'lucide-react'
 import { personalInfo, education } from '../data/content'
 import { EditableText, EditableList } from './Editable'
 import { useEdit } from '../context/EditContext'
+import HobbyCards from './HobbyCards'
 
 function About() {
   const { isEditMode, getContent } = useEdit()
@@ -193,6 +194,9 @@ function About() {
               </div>
             ))}
           </div>
+
+          {/* ManuFX-style Hobby Cards with Insights */}
+          <HobbyCards />
         </div>
       </div>
     </section>
