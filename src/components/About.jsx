@@ -37,13 +37,13 @@ function About() {
             <div className="section-header">
               <p className="section-label">About Me</p>
               <h2 className="section-title">
-                <EditableText 
-                  path="about.title" 
+                <EditableText
+                  path="about.title"
                   defaultValue="Turning Complex Robotics Challenges Into"
                 />
                 <span className="gradient-text">
-                  <EditableText 
-                    path="about.titleHighlight" 
+                  <EditableText
+                    path="about.titleHighlight"
                     defaultValue=" Production-Ready Solutions"
                   />
                 </span>
@@ -51,22 +51,22 @@ function About() {
             </div>
 
             <p>
-              <EditableText 
-                path="about.paragraph1" 
+              <EditableText
+                path="about.paragraph1"
                 defaultValue={personalInfo.about[0]}
                 multiline={true}
               />
             </p>
             <p>
-              <EditableText 
-                path="about.paragraph2" 
+              <EditableText
+                path="about.paragraph2"
                 defaultValue={personalInfo.about[1]}
                 multiline={true}
               />
             </p>
             <p>
-              <EditableText 
-                path="about.paragraph3" 
+              <EditableText
+                path="about.paragraph3"
                 defaultValue={personalInfo.about[2]}
                 multiline={true}
               />
@@ -79,14 +79,14 @@ function About() {
                     {item.icon}
                   </div>
                   <h4>
-                    <EditableText 
-                      path={`about.highlight${index}Title`} 
+                    <EditableText
+                      path={`about.highlight${index}Title`}
                       defaultValue={item.title}
                     />
                   </h4>
                   <p>
-                    <EditableText 
-                      path={`about.highlight${index}Desc`} 
+                    <EditableText
+                      path={`about.highlight${index}Desc`}
                       defaultValue={item.description}
                     />
                   </p>
@@ -99,34 +99,57 @@ function About() {
             <div className="section-header">
               <p className="section-label">Education</p>
             </div>
-            
+
             {education.map((edu, index) => (
               <div className="experience-card" key={index} style={{ marginBottom: '24px' }}>
                 <div className="experience-header">
-                  <div>
-                    <h3 className="experience-title">
-                      <EditableText 
-                        path={`education.${index}.degree`} 
-                        defaultValue={edu.degree}
-                      />
-                    </h3>
-                    <p className="experience-company">
-                      <EditableText 
-                        path={`education.${index}.school`} 
-                        defaultValue={edu.school}
-                      />
-                    </p>
+                  <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+                    {edu.icon && (
+                      <div style={{
+                        flexShrink: 0,
+                        width: '48px',
+                        height: '48px',
+                        borderRadius: '8px',
+                        overflow: 'hidden',
+                        background: 'white',
+                        padding: '4px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                      }}>
+                        <img
+                          src={edu.icon}
+                          alt={edu.school}
+                          style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                          onError={(e) => { e.target.style.display = 'none' }}
+                        />
+                      </div>
+                    )}
+                    <div>
+                      <h3 className="experience-title">
+                        <EditableText
+                          path={`education.${index}.degree`}
+                          defaultValue={edu.degree}
+                        />
+                      </h3>
+                      <p className="experience-company">
+                        <EditableText
+                          path={`education.${index}.school`}
+                          defaultValue={edu.school}
+                        />
+                      </p>
+                    </div>
                   </div>
                   <div className="experience-location">
-                    <EditableText 
-                      path={`education.${index}.location`} 
+                    <EditableText
+                      path={`education.${index}.location`}
                       defaultValue={edu.location}
                     />
                   </div>
                 </div>
                 <p className="experience-date" style={{ marginBottom: '12px' }}>
-                  <EditableText 
-                    path={`education.${index}.date`} 
+                  <EditableText
+                    path={`education.${index}.date`}
                     defaultValue={edu.date}
                   />
                 </p>

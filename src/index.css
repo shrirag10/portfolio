@@ -1307,7 +1307,10 @@ button {
   /* Mobile Menu Button - Always visible on mobile */
   .mobile-menu-btn {
     display: flex;
+    align-items: center;
+    justify-content: center;
     z-index: 1002;
+    color: var(--text-primary);
   }
 
   /* Mobile Menu Overlay */

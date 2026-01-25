@@ -108,7 +108,8 @@ function AcademicProjectsPage() {
                 filter={{ type: "academic" }}
                 titleContext="academic-page"
                 defaultTitle="Academic"
-                defaultTitleHighlight=" Research Projects"
+                defaultTitleHighlight=" Insights"
+                showFilters={false}
             />
         </div>
     )

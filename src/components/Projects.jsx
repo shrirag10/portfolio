@@ -20,7 +20,8 @@ function Projects({
   filter = {},
   titleContext = 'home',
   defaultTitle = 'Featured',
-  defaultTitleHighlight = ' Robotics Projects'
+  defaultTitleHighlight = ' Robotics Projects',
+  showFilters = true
 }) {
   const { getContent } = useEdit()
   const [activeFilter, setActiveFilter] = useState('all')
@@ -49,8 +50,8 @@ function Projects({
     return 0
   })
 
-  // Filter projects by subdomain (local state)
-  const filteredProjects = activeFilter === 'all'
+  // Filter projects by subdomain (local state) - only if filters enabled
+  const filteredProjects = !showFilters || activeFilter === 'all'
     ? sortedProjects
     : sortedProjects.filter(p => p.subdomain === activeFilter)
 
@@ -74,40 +75,42 @@ function Projects({
         </div>
 
         {/* Subdomain Filter Tabs */}
-        <div className="project-filters" style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          gap: '8px',
-          justifyContent: 'center',
-          marginBottom: '48px'
-        }}>
-          {subdomains.map(subdomain => (
-            <button
-              key={subdomain.id}
-              onClick={() => setActiveFilter(subdomain.id)}
-              className={`filter-btn ${activeFilter === subdomain.id ? 'active' : ''}`}
-              style={{
-                padding: '8px 16px',
-                borderRadius: '20px',
-                border: activeFilter === subdomain.id
-                  ? '1px solid var(--accent-primary)'
-                  : '1px solid var(--border-subtle)',
-                background: activeFilter === subdomain.id
-                  ? 'linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.2))'
-                  : 'var(--bg-card)',
-                color: activeFilter === subdomain.id
-                  ? 'var(--accent-primary)'
-                  : 'var(--text-secondary)',
-                fontSize: '0.875rem',
-                fontWeight: '500',
-                cursor: 'pointer',
-                transition: 'all 0.2s ease'
-              }}
-            >
-              {subdomain.label}
-            </button>
-          ))}
-        </div>
+        {showFilters && (
+          <div className="project-filters" style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: '8px',
+            justifyContent: 'center',
+            marginBottom: '48px'
+          }}>
+            {subdomains.map(subdomain => (
+              <button
+                key={subdomain.id}
+                onClick={() => setActiveFilter(subdomain.id)}
+                className={`filter-btn ${activeFilter === subdomain.id ? 'active' : ''}`}
+                style={{
+                  padding: '8px 16px',
+                  borderRadius: '20px',
+                  border: activeFilter === subdomain.id
+                    ? '1px solid var(--accent-primary)'
+                    : '1px solid var(--border-subtle)',
+                  background: activeFilter === subdomain.id
+                    ? 'linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.2))'
+                    : 'var(--bg-card)',
+                  color: activeFilter === subdomain.id
+                    ? 'var(--accent-primary)'
+                    : 'var(--text-secondary)',
+                  fontSize: '0.875rem',
+                  fontWeight: '500',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease'
+                }}
+              >
+                {subdomain.label}
+              </button>
+            ))}
+          </div>
+        )}
 
         <div className="projects-grid">
           {filteredProjects.map((project) => (
