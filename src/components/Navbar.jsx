@@ -47,12 +47,18 @@ function Navbar() {
 
   const scrollToSection = (sectionId) => {
     if (!isHome) {
+      // Navigate to home first, then scroll after a small delay
       window.location.href = `/#${sectionId}`
       return
     }
     const element = document.getElementById(sectionId)
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
+      const navbarHeight = 80 // Account for fixed navbar
+      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset
+      window.scrollTo({
+        top: elementPosition - navbarHeight,
+        behavior: 'smooth'
+      })
     }
     setMobileOpen(false)
   }

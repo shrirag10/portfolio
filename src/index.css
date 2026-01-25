@@ -1392,6 +1392,14 @@ button {
     color: var(--text-primary);
   }
 
+  /* Hide edit panel on mobile - edit only on PC */
+  .edit-panel,
+  .edit-mode-panel,
+  .editor-toolbar,
+  .panel-toggle-btn {
+    display: none !important;
+  }
+
   /* Mobile Menu Overlay */
   .navbar-links {
     position: fixed;

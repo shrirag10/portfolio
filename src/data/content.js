@@ -8,7 +8,8 @@ export const personalInfo = {
   linkedin: "https://www.linkedin.com/in/shriman-raghav",
   github: "https://github.com/shrirag10",
   scholar: "https://scholar.google.com/citations?user=YOUR_ID",
-  resumeUrl: "https://140f9a6f-4535-4ce1-b7b7-878546a4967a.filesusr.com/ugd/a72d75_e4d4088250c64a4eb44b22867989f26f.pdf",
+  resumeUrl: "/content/documents/Shriman_s_Resume__Robotics_Manufacturing_1.pdf",
+  hobbies: ["Formula 1 Racing", "Playing Mridangam", "3D Printing"],
   about: [
     "I am an enthusiastic, results-driven professional with a deep passion for Robotics Engineering! My interests span the fields of Manufacturing and Robotics, and with two years of impactful work experience under my belt, I am eager to dive deeper into the vast world of Robotics.",
     "Currently, I'm pursuing my Master's in Robotics at Northeastern University, Boston, with a focus on Mechanical concentration. With hands-on experience deploying AMR systems in manufacturing environments at Tesla and Hero MotoCorp, I bridge the gap between cutting-edge robotics research and real-world industrial applications.",

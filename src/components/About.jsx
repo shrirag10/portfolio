@@ -72,6 +72,40 @@ function About() {
               />
             </p>
 
+            {/* Hobbies & Interests */}
+            {personalInfo.hobbies && personalInfo.hobbies.length > 0 && (
+              <div className="about-hobbies" style={{ marginTop: '24px', marginBottom: '24px' }}>
+                <h4 style={{
+                  fontSize: '1rem',
+                  color: 'var(--text-muted)',
+                  marginBottom: '12px',
+                  fontWeight: 500
+                }}>
+                  When I'm not engineering...
+                </h4>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+                  {personalInfo.hobbies.map((hobby, index) => (
+                    <span key={index} style={{
+                      padding: '8px 16px',
+                      background: 'var(--accent-glow)',
+                      border: '1px solid var(--border-subtle)',
+                      borderRadius: '20px',
+                      fontSize: '0.9rem',
+                      color: 'var(--accent-secondary)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '6px'
+                    }}>
+                      {hobby === 'Formula 1 Racing' && '🏎️'}
+                      {hobby === 'Playing Mridangam' && '🥁'}
+                      {hobby === '3D Printing' && '🖨️'}
+                      {hobby}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
             <div className="about-highlights">
               {highlights.map((item, index) => (
                 <div className="about-highlight" key={index}>
