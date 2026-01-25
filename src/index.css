@@ -224,6 +224,53 @@
   -webkit-text-fill-color: transparent;
 }
 
+/* Section Backgrounds - Force Light Mode */
+[data-theme="light"] .section,
+[data-theme="light"] .experience,
+[data-theme="light"] .about,
+[data-theme="light"] .skills,
+[data-theme="light"] .contact {
+  background: var(--bg-primary) !important;
+}
+
+[data-theme="light"] .experience.section {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%) !important;
+}
+
+[data-theme="light"] .skills.section {
+  background: #f8fafc !important;
+}
+
+/* Projects Section - Light Mode */
+[data-theme="light"] .projects-section,
+[data-theme="light"] #teslaProjects,
+[data-theme="light"] #heroProjects,
+[data-theme="light"] #academicProjects {
+  background: #ffffff !important;
+}
+
+/* Education Cards in About - Light Mode */
+[data-theme="light"] .about-education .experience-card {
+  background: #ffffff !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Mobile Menu - Light Mode */
+[data-theme="light"] .navbar-links.mobile-open {
+  background: rgba(255, 255, 255, 0.98) !important;
+}
+
+/* Theme Toggle Button - Light Mode */
+[data-theme="light"] .theme-toggle {
+  background: #f1f5f9 !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-theme="light"] .theme-toggle:hover {
+  background: #e2e8f0 !important;
+}
+
 /* ================================
    Reset & Base
    ================================ */
