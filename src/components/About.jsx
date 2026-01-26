@@ -8,7 +8,28 @@ import Reveal from './Reveal'
 function About() {
   const { isEditMode, getContent } = useEdit()
 
-  // ... (keep highlights array)
+  const highlights = [
+    {
+      icon: <Bot size={24} />,
+      title: "Autonomous Systems",
+      description: "AMR deployment & fleet management"
+    },
+    {
+      icon: <Navigation size={24} />,
+      title: "SLAM & Navigation",
+      description: "Real-time localization & mapping"
+    },
+    {
+      icon: <Cpu size={24} />,
+      title: "Sensor Fusion",
+      description: "Multi-sensor integration & filtering"
+    },
+    {
+      icon: <Layers size={24} />,
+      title: "Path Planning",
+      description: "Optimal trajectory generation"
+    }
+  ]
 
   return (
     <section className="about section" id="about">
