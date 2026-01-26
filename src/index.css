@@ -5800,3 +5800,41 @@ body:has(.editor-toolbar.edit-mode-active) .navbar {
     text-align: left;
   }
 }
+
+/* ================================
+   Critical Mobile Layout Fixes
+   ================================ */
+@media (max-width: 768px) {
+
+  .project-card,
+  .project-search-bar,
+  .project-filter-pills,
+  .projects-grid,
+  .skills-grid,
+  .skill-category {
+    max-width: 100% !important;
+    width: auto !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+    padding: 0 4px !important;
+  }
+
+  .project-search-bar {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    padding: 16px !important;
+  }
+
+  .project-search-input {
+    width: 100% !important;
+  }
+
+  .project-filter-pills {
+    justify-content: center !important;
+  }
+}
