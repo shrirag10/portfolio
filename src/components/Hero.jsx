@@ -6,6 +6,7 @@ import { useEdit } from '../context/EditContext'
 import TypewriterText from './TypewriterText'
 import HeroImpactCards from './HeroImpactCards'
 import ResumeModal from './ResumeModal'
+import Reveal from './Reveal'
 
 function Hero() {
   const { getContent, isEditMode } = useEdit()
