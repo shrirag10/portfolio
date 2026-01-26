@@ -8,6 +8,8 @@ import HeroImpactCards from './HeroImpactCards'
 import ResumeModal from './ResumeModal'
 import Reveal from './Reveal'
 
+import RoboticsOverlay from './RoboticsOverlay'
+
 function Hero() {
   const { getContent, isEditMode } = useEdit()
   const [resumeModalOpen, setResumeModalOpen] = useState(false)
@@ -32,6 +34,7 @@ function Hero() {
       <div className="hero-background">
         <div className="hero-gradient"></div>
         <div className="hero-grid"></div>
+        <RoboticsOverlay />
       </div>
 
       <div className="container">
