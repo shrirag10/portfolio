@@ -5826,11 +5826,16 @@ body:has(.editor-toolbar.edit-mode-active) .navbar {
   .project-filter-pills,
   .projects-grid,
   .skills-grid,
-  .skill-category {
+  .skill-category,
+  .mobile-edit-fab {
     max-width: 100% !important;
     width: auto !important;
     min-width: 0 !important;
     box-sizing: border-box !important;
+  }
+
+  .mobile-edit-fab {
+    display: none !important;
   }
 
   .projects-grid {
