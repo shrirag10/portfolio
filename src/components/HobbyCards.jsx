@@ -1,11 +1,15 @@
 import { Lightbulb } from 'lucide-react'
 import { personalInfo } from '../data/content'
+import { EditableText } from './Editable'
+import { useEdit } from '../context/EditContext'
 
 /**
  * Enhanced Hobby Cards with Insights
  * ManuFX-style hobby/interest cards with personal insights
  */
 function HobbyCards() {
+    const { isEditMode } = useEdit()
+
     const hobbies = [
         {
             icon: '🏎️',
@@ -43,7 +47,7 @@ function HobbyCards() {
                     color: 'var(--text-primary)',
                     marginTop: '8px'
                 }}>
-                    Personal Interests
+                    <EditableText path="hobbies.title" defaultValue="Personal Interests" />
                 </h3>
             </div>
 
@@ -55,18 +59,36 @@ function HobbyCards() {
                         style={{ '--hobby-gradient': hobby.gradient }}
                     >
                         <div className="hobby-header">
-                            <span className="hobby-icon">{hobby.icon}</span>
-                            <div>
-                                <h4 className="hobby-title">{hobby.title}</h4>
-                                <span className="hobby-category">{hobby.category}</span>
+                            <span className="hobby-icon">
+                                <EditableText path={`hobbies.${index}.icon`} defaultValue={hobby.icon} />
+                            </span>
+                            <div style={{ flex: 1 }}>
+                                <h4 className="hobby-title">
+                                    <EditableText path={`hobbies.${index}.title`} defaultValue={hobby.title} />
+                                </h4>
+                                <span className="hobby-category">
+                                    <EditableText path={`hobbies.${index}.category`} defaultValue={hobby.category} />
+                                </span>
                             </div>
                         </div>
 
-                        <p className="hobby-description">{hobby.description}</p>
+                        <p className="hobby-description">
+                            <EditableText
+                                path={`hobbies.${index}.description`}
+                                defaultValue={hobby.description}
+                                multiline={true}
+                            />
+                        </p>
 
                         <div className="hobby-insight">
                             <Lightbulb size={16} className="hobby-insight-icon" />
-                            <span className="hobby-insight-text">{hobby.insight}</span>
+                            <span className="hobby-insight-text">
+                                <EditableText
+                                    path={`hobbies.${index}.insight`}
+                                    defaultValue={hobby.insight}
+                                    multiline={true}
+                                />
+                            </span>
                         </div>
                     </div>
                 ))}

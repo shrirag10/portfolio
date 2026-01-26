@@ -502,6 +502,37 @@ export function EditableImage({ path, defaultValue, alt, className = '' }) {
           <span>{currentStyles.width || '100%'}</span>
         </div>
 
+        <div className="editable-image-size">
+          <label>Height:</label>
+          <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+            <button
+              className={`style-btn-small ${!currentStyles.height || currentStyles.height === 'auto' ? 'active' : ''}`}
+              onClick={() => updateStyle(path, { ...currentStyles, height: 'auto' })}
+            >Auto</button>
+            <input
+              type="text"
+              value={currentStyles.height || ''}
+              placeholder="200px"
+              onChange={(e) => updateStyle(path, { ...currentStyles, height: e.target.value })}
+              className="editable-input-small"
+              style={{ width: '60px' }}
+            />
+          </div>
+        </div>
+
+        <div className="editable-image-size">
+          <label>Padding:</label>
+          <input
+            type="range"
+            min="0"
+            max="40"
+            step="4"
+            value={parseInt(currentStyles.padding) || 0}
+            onChange={(e) => updateStyle(path, { ...currentStyles, padding: `${e.target.value}px` })}
+          />
+          <span>{currentStyles.padding || '0px'}</span>
+        </div>
+
         {/* Border Radius */}
         <div className="editable-image-size">
           <label>Corners:</label>

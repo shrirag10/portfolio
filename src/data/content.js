@@ -90,21 +90,47 @@ export const projects = [
     description: "Deployment and refinement of autonomous forklift AMRs at Tesla, leveraging SLAM, LiDAR, and 3D pallet vision for automated material handling in manufacturing.",
     featured: true,
     image: "/images/extracted/industrial/image8.jpg",
-    tech: ["SLAM", "LiDAR", "3D Vision", "Theta*", "Python"],
+    tech: ["SLAM", "LiDAR", "3D Vision", "Python"],
     date: "2025",
     role: "Lead Engineer",
     details: {
       overview: "Led the deployment and continuous refinement of autonomous forklift AMRs at Tesla's Fremont facility. The system uses advanced SLAM algorithms, LiDAR perception, and 3D pallet vision to automate pallet handling operations.",
-      challenge: "Manufacturing floors present complex navigation challenges with dynamic obstacles, varying lighting conditions, and the need for precise pallet manipulation. The system needed to integrate seamlessly with existing workflows while maintaining safety standards.",
-      solution: "Implemented a penalty-optimized Theta* algorithm for path planning, enabling real-time dynamic rerouting. Developed custom perception pipelines for 3D pallet detection and pose estimation. Created comprehensive DFMEA documentation for system reliability.",
+      challenge: "Manufacturing floors present complex navigation challenges with dynamic obstacles, varying lighting conditions, and the need for precise pallet manipulation.",
+      solution: "Developed custom perception pipelines for 3D pallet detection and pose estimation. Created comprehensive DFMEA documentation for system reliability to ensuring seamless integration with fleet management.",
       results: [
         "Projected $2.04M in annual cost savings through headcount optimization",
-        "83% reduction in routing complexity through optimized path planning",
         "35% targeted downtime reduction through DFMEA enhancements",
-        "Seamless integration with existing fleet management systems"
+        "Seamless integration with existing fleet management systems",
+        "Improved safety metrics in material handling zones"
       ],
       internalGithub: "https://github.tesla.com/shsrinivasan",
       internalGithubNote: "Note: This link is only accessible within the Tesla network."
+    }
+  },
+  {
+    id: "tesla-theta-star",
+    title: "Theta* Automated Path Planning",
+    subdomain: "Path Planning",
+    type: "professional",
+    company: "Tesla Inc.",
+    companyLogo: "https://upload.wikimedia.org/wikipedia/commons/e/e8/Tesla_logo.png",
+    category: "Algorithm Development",
+    description: "Programmed AMR path planning using penalty-optimized Theta* algorithm, reducing routing complexity by 83% for efficient navigation in complex layouts.",
+    featured: true,
+    image: "/images/extracted/industrial/image8.jpg",
+    tech: ["Theta*", "Path Planning", "C++", "Optimization"],
+    date: "2025",
+    role: "Robotics Engineer",
+    details: {
+      overview: "Developed and implemented a penalty-optimized Theta* algorithm for AMR path planning to address inefficiencies in standard grid-based navigation.",
+      challenge: "Standard A* creates jagged paths constrained to grids, while post-smoothing is computationally expensive. The system required smooth, natural paths in real-time.",
+      solution: "Implemented Theta* with custom cost penalties for proximity to static obstacles and dynamic zones. Optimized for any-angle path planning to reduce path length and turning maneuvers.",
+      results: [
+        "83% reduction in routing complexity",
+        "Generated smooth, any-angle trajectories",
+        "Reduced travel time and mechanical wear on AMRs",
+        "Real-time replanning capabilities enabled"
+      ]
     }
   },
   {
@@ -186,12 +212,38 @@ export const projects = [
     }
   },
   {
+    id: "maze-solving",
+    title: "Maze Solving Robot",
+    subdomain: "Control Systems",
+    type: "academic",
+    companyLogo: "https://upload.wikimedia.org/wikipedia/en/f/fe/Srmseal.png",
+    category: "Control Systems",
+    description: "Developed an autonomous maze-solving robot using flood-fill and PID algorithms, optimizing path length and traversal time.",
+    featured: true,
+    image: "/content/CSE_Total Path Length per Maze.png",
+    tech: ["C++", "PID Control", "Embedded Systems", "Flood Fill"],
+    date: "2022",
+    role: "Lead Developer",
+    details: {
+      overview: "Designed and built a maze-solving robot capable of autonomously mapping and navigating unknown maze configurations.",
+      challenge: "The robot needed to navigate accurately without external sensors like GPS, relying solely on local wall detection and odometry.",
+      solution: "Implemented a flood-fill algorithm for maze mapping and path optimization. Tuned PID controllers for precise straight-line motion and turns.",
+      results: [
+        "Successfully solved 16x16 mazes autonomously",
+        "Optimized total path length per maze",
+        "Reduced total traversal time significantly",
+        "Demonstrated robust control logic"
+      ]
+    }
+  },
+  {
     id: "rtab-slam",
     title: "3D Spatial Mapping of Sparse Featured Environments",
     subdomain: "Perception-SLAM",
     type: "academic",
+    companyLogo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Northeastern_University_seal.svg/1200px-Northeastern_University_seal.svg.png",
     category: "SLAM & Perception",
-    description: "This project explores using RTAB-Map (Real-Time Appearance-Based Mapping) to create 3D indoor maps for applications like calculating paint/wallpaper requirements. The system employs a ZED Mini RGB-D camera and ROS 2 to perform SLAM (Simultaneous Localization and Mapping).",
+    description: "This project explores using RTAB-Map (Real-Time Appearance-Based Mapping) to create 3D indoor maps for applications like calculating paint/wallpaper requirements.",
     featured: true,
     image: "/images/extracted/personal/image1.jpg",
     tech: ["ROS2", "RTAB-Map", "ZED Camera", "SLAM", "Python"],
@@ -200,10 +252,10 @@ export const projects = [
     github: "https://github.com/shrirag10/3D-Mapping-RTAB-SLAM",
     details: {
       overview: "Built an autonomous robot mapping system using RTAB-Map SLAM with ZED Mini stereo camera in ROS2. The system creates drift-free maps in challenging GPS-denied environments.",
-      challenge: "Testing in Northeastern University's tunnels revealed that mounting the camera on a rolling chair improved stability and accuracy compared to handheld use, though challenges like motion blur on carpets and algorithmic sensitivity persisted.",
-      solution: "Integrated stereo visual odometry with IMU data using Kalman filtering. Implemented Bayesian loop closure with GTSAM optimization to eliminate accumulated drift and ensure map consistency.",
+      challenge: "Testing in Northeastern University's tunnels revealed that mounting the camera on a rolling chair improved stability and accuracy compared to handheld use.",
+      solution: "Integrated stereo visual odometry with IMU data using Kalman filtering. Implemented Bayesian loop closure with GTSAM optimization to eliminate accumulated drift.",
       results: [
-        "Precise alignment with ground truth maps in structured environments",
+        "Precise alignment with ground truth maps",
         "Real-time 3D indoor mapping capabilities",
         "Successfully mapped Northeastern University underground tunnels",
         "Cost-effective solution for indoor mapping applications"
@@ -215,8 +267,9 @@ export const projects = [
     title: "GPS & IMU Sensor Fusion for Automotive Dead Reckoning",
     subdomain: "Perception-SLAM",
     type: "academic",
+    companyLogo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Northeastern_University_seal.svg/1200px-Northeastern_University_seal.svg.png",
     category: "Sensor Fusion",
-    description: "Picture a car weaving through Boston's concrete jungle, where skyscrapers scramble GPS signals and the IMU's compass spins like a lost hiker. This project tamed the chaos by fusing the IMU's split-second reflexes (100 Hz accelerometer/gyroscope) with GPS's steady voice (1 Hz fixes).",
+    description: "Fusing IMU's split-second reflexes with GPS's steady fixes using Extended Kalman Filtering for reliable automotive navigation.",
     featured: true,
     image: "/images/extracted/personal/image2.png",
     tech: ["Python", "Kalman Filter", "MATLAB", "ROS", "GPS", "IMU"],
@@ -224,14 +277,14 @@ export const projects = [
     role: "Lead Developer",
     github: "https://github.com/shrirag10/Dead-Reckoning",
     details: {
-      overview: "Developed a sensor fusion system combining GPS and IMU data through Extended Kalman Filtering for reliable vehicle positioning and dead reckoning capabilities.",
-      challenge: "GPS signals can be unreliable in urban environments with multipath effects and signal blockage. IMU sensors accumulate drift over time. A robust fusion approach was needed for reliable positioning.",
-      solution: "Using MATLAB and ROS, transformed raw sensor data into a precision navigation engine. Implemented Extended Kalman Filter for optimal sensor fusion with real-time trajectory correction algorithms.",
+      overview: "Developed a sensor fusion system combining GPS and IMU data through Extended Kalman Filtering for reliable vehicle positioning.",
+      challenge: "GPS signals can be unreliable in urban environments with multipath effects and signal blockage. IMU sensors accumulate drift over time.",
+      solution: "Using MATLAB and ROS, implemented Extended Kalman Filter for optimal sensor fusion with real-time trajectory correction algorithms.",
       results: [
         "Reliable positioning for robotic manipulation tasks",
         "Real-time performance suitable for automotive applications",
         "Proven sensors can thrive in cities where GPS falters",
-        "Demonstrated sensor fusion wizardry and real-time filtering expertise"
+        "Demonstrated sensor fusion wizardry"
       ]
     }
   },
@@ -240,23 +293,24 @@ export const projects = [
     title: "LLM-Enhanced A* Path Planning",
     subdomain: "Deep Learning",
     type: "academic",
+    companyLogo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Northeastern_University_seal.svg/1200px-Northeastern_University_seal.svg.png",
     category: "AI + Robotics",
-    description: "Hybrid path planning system integrating LLM waypoint guidance with classical A* search, achieving significant improvements in node efficiency and navigation speed.",
+    description: "Hybrid path planning system integrating LLM waypoint guidance with classical A* search, achieving significant improvements in node efficiency.",
     featured: true,
     image: "/images/extracted/personal/image3.png",
     tech: ["Python", "LLM", "A*", "PyTorch", "ROS2"],
-    date: "March 2025 – April 2025",
+    date: "2025",
     role: "Lead Developer",
     github: "https://github.com/shrirag10/Improved-LLM-A-star",
     details: {
-      overview: "Redesigned and improved the LLM-A* hybrid path planning system from the ground up, integrating refined LLM waypoint guidance with classical A* search for resource-efficient robot navigation.",
-      challenge: "Traditional path planning algorithms can be computationally expensive, especially in complex environments. The goal was to leverage LLM reasoning capabilities to guide classical planners toward more efficient solutions.",
-      solution: "Developed a novel integration of LLM-generated waypoint suggestions with A* search. Systematically compared chain-of-thought, minimalistic, and Recursive Path Exploration (RePE) prompting methods to optimize waypoint generation.",
+      overview: "Redesigned and improved the LLM-A* hybrid path planning system from the ground up, integrating refined LLM waypoint guidance with classical A* search.",
+      challenge: "Traditional path planning algorithms can be computationally expensive. The goal was to leverage LLM reasoning capabilities to guide classical planners.",
+      solution: "Developed a novel integration of LLM-generated waypoint suggestions with A* search. Compared chain-of-thought, minimalistic, and RePE prompting methods.",
       results: [
         "23.4% reduction in node expansions on 10×10 grids",
         "21.6% improvement on 20×20 grids",
-        "17.8% boost in waypoint accuracy through RePE prompting",
-        "Faster, more resource-efficient navigation for robotics applications"
+        "17.8% boost in waypoint accuracy",
+        "Faster, more resource-efficient navigation"
       ]
     }
   },
@@ -265,22 +319,23 @@ export const projects = [
     title: "Diode Based Laser Cutter for Leather Applications",
     subdomain: "Mechanical",
     type: "academic",
+    companyLogo: "https://upload.wikimedia.org/wikipedia/en/f/fe/Srmseal.png",
     category: "Industrial Automation",
-    description: "The Adaptive Three-Axis Gantry Robot Laser Cutter is a precision machining system designed for leather manufacturing. Featuring a modular aluminum gantry frame, dynamic standoff distance control, and a 20W NEJE diode laser.",
+    description: "Adaptive Three-Axis Gantry Robot Laser Cutter designed for leather manufacturing, featuring dynamic standoff distance control.",
     featured: false,
     image: "/images/extracted/personal/image4.png",
-    tech: ["GRBL", "Raspberry Pi", "Mechanical Design", "CAD", "Control Systems"],
+    tech: ["GRBL", "Raspberry Pi", "CAD", "Control Systems"],
     date: "2023",
     role: "Lead Engineer",
     details: {
       overview: "Designed and built a precision laser cutting system for leather manufacturing applications with a modular aluminum gantry frame.",
-      challenge: "Small-scale leather industries need affordable, precise cutting solutions that minimize material wastage and energy consumption while ensuring clean cuts.",
-      solution: "Implemented GRBL-based control system with Raspberry Pi interface. Added advanced filtration for safe operations and dynamic standoff distance control for consistent cut quality.",
+      challenge: "Small-scale leather industries need affordable, precise cutting solutions that minimize material wastage.",
+      solution: "Implemented GRBL-based control system with Raspberry Pi interface. Added advanced filtration and dynamic standoff distance control.",
       results: [
         "Clean, carbonization-free cuts with high-speed accuracy",
         "Safe, efficient, and user-friendly operations",
-        "Supports intricate cutting, engraving, and prototyping",
-        "Minimal material wastage and low energy consumption"
+        "Minimal material wastage and low energy consumption",
+        "Supports intricate cutting and engraving"
       ]
     }
   },
@@ -289,8 +344,9 @@ export const projects = [
     title: "Nano Swarm Drone",
     subdomain: "Aerial Robotics",
     type: "academic",
+    companyLogo: "https://upload.wikimedia.org/wikipedia/en/f/fe/Srmseal.png",
     category: "Aerial Robotics",
-    description: "The Drone Surveillance System is an advanced solution for smart campuses, designed to provide autonomous, real-time monitoring and enhanced security. Equipped with high-resolution cameras, multi-spectral sensors, and SWARM capabilities.",
+    description: "Drone Surveillance System for smart campuses, providing autonomous, real-time monitoring and enhanced security with SWARM capabilities.",
     featured: false,
     image: "/images/extracted/personal/image5.png",
     tech: ["Drone", "SWARM", "GPS", "AI", "Computer Vision"],
@@ -298,8 +354,8 @@ export const projects = [
     role: "Team Lead",
     details: {
       overview: "Advanced surveillance drone system for smart campuses with autonomous monitoring and enhanced security features.",
-      challenge: "Campus security needs efficient, scalable monitoring solutions that can cover large areas while detecting anomalies in real-time.",
-      solution: "Developed drones with GPS-aided navigation, AI-powered obstacle avoidance, and modular chassis for adaptability. Implemented SWARM capabilities for coordinated coverage.",
+      challenge: "Campus security needs efficient, scalable monitoring solutions that can cover large areas while detecting anomalies.",
+      solution: "Developed drones with GPS-aided navigation, AI-powered obstacle avoidance, and modular chassis. Implemented SWARM capabilities.",
       results: [
         "Autonomous, real-time monitoring capabilities",
         "Precise surveillance and anomaly detection",
@@ -313,17 +369,18 @@ export const projects = [
     title: "Zerkix ROV",
     subdomain: "Underwater Robotics",
     type: "academic",
+    companyLogo: "https://upload.wikimedia.org/wikipedia/en/f/fe/Srmseal.png",
     category: "Underwater Robotics",
-    description: "Zerkix is a cutting-edge Remotely Operated Vehicle (ROV) designed for underwater inspections and operations, inspired by the hydrodynamic efficiency of ray fish. Featuring a biomimetic chassis and Blue Robotics T200 thrusters.",
+    description: "Biomimetic Remotely Operated Vehicle (ROV) designed for underwater inspections, inspired by ray fish hydrodynamics.",
     featured: false,
     image: "/images/extracted/personal/image6.jpg",
-    tech: ["ROV", "Blue Robotics", "Hydrodynamics", "Sensors", "Control Systems"],
+    tech: ["ROV", "Blue Robotics", "Hydrodynamics", "Control Systems"],
     date: "2022",
     role: "Design Lead",
     details: {
       overview: "Designed a biomimetic ROV for underwater inspections with ray fish-inspired hydrodynamic design.",
-      challenge: "Underwater operations require vehicles that can navigate efficiently while maintaining stability and providing clear imaging capabilities.",
-      solution: "Created biomimetic chassis with Blue Robotics T200 thrusters and Bar30 pressure sensor. Implemented robust waterproofing and efficient energy management with 182W power requirement.",
+      challenge: "Underwater operations require vehicles that can navigate efficiently while maintaining stability.",
+      solution: "Created biomimetic chassis with Blue Robotics T200 thrusters and Bar30 pressure sensor. Implemented robust waterproofing.",
       results: [
         "Weight of 10 kg with exceptional performance",
         "Pipeline inspections and marine research capabilities",

@@ -1,11 +1,15 @@
 import { TrendingUp, Zap, Target, Users } from 'lucide-react'
 import AnimatedCounter from './AnimatedCounter'
+import { EditableText } from './Editable'
+import { useEdit } from '../context/EditContext'
 
 /**
  * ManuFX-Style Hero Impact Cards
  * Displays key metrics with animated counters in the hero section
  */
 function HeroImpactCards() {
+    const { isEditMode, getContent } = useEdit()
+
     const impactStats = [
         {
             value: 83,
@@ -47,6 +51,10 @@ function HeroImpactCards() {
         <div className="hero-impact-cards">
             {impactStats.map((stat, index) => {
                 const Icon = stat.icon
+                const currentValue = getContent(`hero.impact.${index}.value`, stat.value)
+                const currentPrefix = getContent(`hero.impact.${index}.prefix`, stat.prefix || '')
+                const currentSuffix = getContent(`hero.impact.${index}.suffix`, stat.suffix || '')
+
                 return (
                     <div
                         key={index}
@@ -59,16 +67,24 @@ function HeroImpactCards() {
                         <div className="hero-impact-icon">
                             <Icon size={18} />
                         </div>
-                        <div className="hero-impact-value">
-                            <AnimatedCounter
-                                value={stat.value}
-                                prefix={stat.prefix || ''}
-                                suffix={stat.suffix || ''}
-                                decimals={stat.decimals || 0}
-                                duration={2000}
-                            />
+                        <div className="hero-impact-value" style={{ display: 'flex', justifyContent: 'center', alignItems: 'baseline', gap: '2px' }}>
+                            <EditableText path={`hero.impact.${index}.prefix`} defaultValue={stat.prefix || ''} />
+
+                            {isEditMode ? (
+                                <EditableText path={`hero.impact.${index}.value`} defaultValue={stat.value} />
+                            ) : (
+                                <AnimatedCounter
+                                    value={parseFloat(currentValue)}
+                                    decimals={stat.decimals || 0}
+                                    duration={2000}
+                                />
+                            )}
+
+                            <EditableText path={`hero.impact.${index}.suffix`} defaultValue={stat.suffix || ''} />
                         </div>
-                        <div className="hero-impact-label">{stat.label}</div>
+                        <div className="hero-impact-label">
+                            <EditableText path={`hero.impact.${index}.label`} defaultValue={stat.label} />
+                        </div>
                     </div>
                 )
             })}
