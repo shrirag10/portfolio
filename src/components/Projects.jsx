@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import { ArrowRight, Building2, GraduationCap } from 'lucide-react'
 import { projects } from '../data/content'
 import { EditableText, EditableTags, EditableImage } from './Editable'
@@ -151,8 +150,8 @@ function Projects({
 
         <div className="projects-grid">
           {filteredProjects.map((project) => (
-            <Link
-              to={`/project/${project.id}`}
+            <a
+              href={`/project/${project.id}`}
               className={`project-card ${project.featured ? 'featured' : ''}`}
               key={project.id}
             >
@@ -285,7 +284,7 @@ function Projects({
                   Learn More <ArrowRight size={16} />
                 </div>
               </div>
-            </Link>
+            </a>
           ))}
         </div>
       </div>

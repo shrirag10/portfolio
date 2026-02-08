@@ -7,7 +7,7 @@ export const personalInfo = {
   location: "Boston, MA",
   linkedin: "https://www.linkedin.com/in/shriman-raghav",
   github: "https://github.com/shrirag10",
-  scholar: "https://scholar.google.com/citations?user=YOUR_ID",
+  scholar: "", // Add your Google Scholar user ID here
   resumeUrl: "/content/documents/Shriman_s_Resume__Robotics_Manufacturing_1.pdf",
   hobbies: ["Formula 1 Racing", "Playing Mridangam", "3D Printing"],
   about: [

@@ -258,15 +258,17 @@ function Contact() {
             >
               <Github size={24} />
             </a>
-            <a
-              href={getContent('contact.scholarUrl', personalInfo.scholar)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="contact-social"
-              aria-label="Google Scholar"
-            >
-              <GraduationCap size={24} />
-            </a>
+            {personalInfo.scholar && (
+              <a
+                href={getContent('contact.scholarUrl', personalInfo.scholar)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="contact-social"
+                aria-label="Google Scholar"
+              >
+                <GraduationCap size={24} />
+              </a>
+            )}
           </div>
         </div>
       </div>

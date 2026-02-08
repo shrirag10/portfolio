@@ -22,7 +22,7 @@ import { useEdit } from '../context/EditContext'
  * Default password if not set in environment
  * CHANGE THIS IN PRODUCTION via VITE_EDITOR_PASSWORD env var
  */
-const EDITOR_PASSWORD = import.meta.env.VITE_EDITOR_PASSWORD || 'admin123'
+const EDITOR_PASSWORD = process.env.NEXT_PUBLIC_EDITOR_PASSWORD || 'admin123'
 
 /**
  * Maximum failed attempts before temporary lockout

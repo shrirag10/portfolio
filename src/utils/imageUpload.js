@@ -4,9 +4,9 @@
  */
 
 // Configuration from environment variables
-const CLOUDINARY_CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME
-const CLOUDINARY_UPLOAD_PRESET = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET
-const IMGBB_API_KEY = import.meta.env.VITE_IMGBB_API_KEY
+const CLOUDINARY_CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
+const CLOUDINARY_UPLOAD_PRESET = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET
+const IMGBB_API_KEY = process.env.NEXT_PUBLIC_IMGBB_API_KEY
 
 // Maximum file size (10MB)
 const MAX_FILE_SIZE = 10 * 1024 * 1024

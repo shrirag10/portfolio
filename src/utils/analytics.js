@@ -4,7 +4,7 @@
 
 export const logVisit = async () => {
     // Skip analytics in development
-    if (import.meta.env.DEV && !import.meta.env.VITE_TEST_ANALYTICS) {
+    if (process.env.NODE_ENV === 'development' && !process.env.NEXT_PUBLIC_TEST_ANALYTICS) {
         return;
     }
 

@@ -1,24 +1,37 @@
 import { useState, useEffect, useRef } from 'react'
-import { Link, useLocation } from 'react-router-dom'
 import { Menu, X, ChevronDown, Sun, Moon } from 'lucide-react'
 import { EditableText } from './Editable'
 import { useEdit } from '../context/EditContext'
 import { personalInfo } from '../data/content'
 
+// Helper to check if on a specific path (replaces useLocation)
+const usePathname = () => {
+  const [pathname, setPathname] = useState('/')
+  useEffect(() => {
+    setPathname(window.location.pathname)
+  }, [])
+  return pathname
+}
+
 function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [projectsDropdownOpen, setProjectsDropdownOpen] = useState(false)
-  const [theme, setTheme] = useState(() => {
-    // Check localStorage first, then system preference
-    const saved = localStorage.getItem('portfolio-theme')
-    if (saved) return saved
-    return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
-  })
-  const location = useLocation()
-  const isHome = location.pathname === '/'
+  const [theme, setTheme] = useState('dark')
+  const pathname = usePathname()
+  const isHome = pathname === '/'
   const { isEditMode } = useEdit()
   const dropdownRef = useRef(null)
+
+  // Initialize theme from localStorage on client
+  useEffect(() => {
+    const saved = localStorage.getItem('portfolio-theme')
+    if (saved) {
+      setTheme(saved)
+    } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+      setTheme('light')
+    }
+  }, [])
 
   // Apply theme to document
   useEffect(() => {
@@ -76,9 +89,9 @@ function Navbar() {
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="container">
         <div className="navbar-inner">
-          <Link to="/" className="navbar-logo">
+          <a href="/" className="navbar-logo">
             <EditableText path="navbar.logo" defaultValue="Shriman" /><span>.</span>
-          </Link>
+          </a>
 
           <div className={`navbar-links ${mobileOpen ? 'mobile-open' : ''}`}>
             <button className="navbar-link" onClick={() => scrollToSection('about')}>
@@ -121,8 +134,8 @@ function Navbar() {
                   zIndex: 100,
                   marginTop: '8px'
                 }}>
-                  <Link
-                    to="/tesla"
+                  <a
+                    href="/tesla"
                     className="dropdown-item"
                     onClick={() => { setProjectsDropdownOpen(false); setMobileOpen(false); }}
                     style={{
@@ -136,9 +149,9 @@ function Navbar() {
                     }}
                   >
                     Tesla Projects
-                  </Link>
-                  <Link
-                    to="/hero"
+                  </a>
+                  <a
+                    href="/hero"
                     className="dropdown-item"
                     onClick={() => { setProjectsDropdownOpen(false); setMobileOpen(false); }}
                     style={{
@@ -152,9 +165,9 @@ function Navbar() {
                     }}
                   >
                     Hero MotoCorp Projects
-                  </Link>
-                  <Link
-                    to="/academic"
+                  </a>
+                  <a
+                    href="/academic"
                     className="dropdown-item"
                     onClick={() => { setProjectsDropdownOpen(false); setMobileOpen(false); }}
                     style={{
@@ -168,7 +181,7 @@ function Navbar() {
                     }}
                   >
                     Academic Projects
-                  </Link>
+                  </a>
                 </div>
               )}
             </div>
