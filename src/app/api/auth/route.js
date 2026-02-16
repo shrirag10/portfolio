@@ -1,5 +1,9 @@
 import { NextResponse } from 'next/server'
 
+// Force unique serverless function (prevents Vercel dedup symlink collision)
+export const runtime = 'nodejs'
+export const dynamic = 'force-dynamic'
+
 export async function POST(request) {
     try {
         const body = await request.json()
