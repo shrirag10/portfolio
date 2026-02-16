@@ -13,13 +13,13 @@ function Blog() {
                 <div className="section-header" style={{ textAlign: 'center' }}>
                     <p className="section-label" style={{ justifyContent: 'center' }}>
                         <BookOpen size={16} />
-                        Writings
+                        Tech Musings
                     </p>
                     <h2>
-                        Technical <span className="gradient-text">Insights</span>
+                        Tech <span className="gradient-text">Musings</span>
                     </h2>
                     <p className="section-subtitle" style={{ maxWidth: '600px', margin: '0 auto', color: 'var(--text-secondary)' }}>
-                        Articles on robotics, AI, and engineering — originally published on LinkedIn.
+                        Thoughts on robotics, AI, and the engineering journey — originally shared on LinkedIn.
                     </p>
                 </div>
 
