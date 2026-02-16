@@ -11,9 +11,6 @@ const nextConfig = {
         ],
     },
 
-    // Trailing slash for cleaner URLs
-    trailingSlash: true,
-
     // Transpile Three.js packages
     transpilePackages: ['three', '@react-three/fiber', '@react-three/drei'],
 }
