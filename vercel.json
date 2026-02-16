@@ -1,5 +1,13 @@
 {
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/" }
-  ]
+  "functions": {
+    "src/app/api/auth/route.js": {
+      "memory": 128
+    },
+    "src/app/api/content/route.js": {
+      "memory": 256
+    },
+    "src/app/api/visit/route.js": {
+      "memory": 192
+    }
+  }
 }
