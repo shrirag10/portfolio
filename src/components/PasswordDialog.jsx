@@ -6,23 +6,14 @@
  * 
  * Features:
  * - Password input with show/hide toggle
- * - Configurable password (stored in environment variable)
+ * - Server-side password validation via /api/auth
  * - Rate limiting after failed attempts
  * - Keyboard accessible (Enter to submit)
- * 
- * IMPORTANT: Set VITE_EDITOR_PASSWORD in .env file
- * Default password for development: "admin123"
  */
 
 import { useState, useEffect, useRef } from 'react'
 import { Lock, Eye, EyeOff, X, AlertCircle } from 'lucide-react'
 import { useEdit } from '../context/EditContext'
-
-/**
- * Default password if not set in environment
- * CHANGE THIS IN PRODUCTION via VITE_EDITOR_PASSWORD env var
- */
-const EDITOR_PASSWORD = process.env.NEXT_PUBLIC_EDITOR_PASSWORD || 'admin123'
 
 /**
  * Maximum failed attempts before temporary lockout
@@ -45,6 +36,7 @@ function PasswordDialog({ isOpen, onSuccess, onClose }) {
     const [attempts, setAttempts] = useState(0)
     const [lockedUntil, setLockedUntil] = useState(null)
     const [timeRemaining, setTimeRemaining] = useState(0)
+    const [isValidating, setIsValidating] = useState(false)
     const inputRef = useRef(null)
     const { setEditPassword } = useEdit()
 
@@ -73,7 +65,7 @@ function PasswordDialog({ isOpen, onSuccess, onClose }) {
         return () => clearInterval(interval)
     }, [lockedUntil])
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
 
         // Check if locked out
@@ -81,25 +73,40 @@ function PasswordDialog({ isOpen, onSuccess, onClose }) {
             return
         }
 
-        // Validate password
-        if (password === EDITOR_PASSWORD) {
-            // Set password for cloud sync before clearing
-            setEditPassword(password)
-            setPassword('')
-            setError('')
-            setAttempts(0)
-            onSuccess()
-        } else {
-            const newAttempts = attempts + 1
-            setAttempts(newAttempts)
-            setPassword('')
+        setIsValidating(true)
+        setError('')
 
-            if (newAttempts >= MAX_ATTEMPTS) {
-                setLockedUntil(Date.now() + LOCKOUT_DURATION)
-                setError(`Too many attempts. Locked for ${LOCKOUT_DURATION / 1000} seconds.`)
+        try {
+            // Validate password server-side
+            const response = await fetch('/api/auth', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ password }),
+            })
+
+            if (response.ok) {
+                // Set password for cloud sync before clearing
+                setEditPassword(password)
+                setPassword('')
+                setError('')
+                setAttempts(0)
+                onSuccess()
             } else {
-                setError(`Incorrect password. ${MAX_ATTEMPTS - newAttempts} attempts remaining.`)
+                const newAttempts = attempts + 1
+                setAttempts(newAttempts)
+                setPassword('')
+
+                if (newAttempts >= MAX_ATTEMPTS) {
+                    setLockedUntil(Date.now() + LOCKOUT_DURATION)
+                    setError(`Too many attempts. Locked for ${LOCKOUT_DURATION / 1000} seconds.`)
+                } else {
+                    setError(`Incorrect password. ${MAX_ATTEMPTS - newAttempts} attempts remaining.`)
+                }
             }
+        } catch (err) {
+            setError('Failed to validate password. Please try again.')
+        } finally {
+            setIsValidating(false)
         }
     }
 
@@ -150,7 +157,7 @@ function PasswordDialog({ isOpen, onSuccess, onClose }) {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             placeholder="Enter password"
-                            disabled={isLocked}
+                            disabled={isLocked || isValidating}
                             className={error ? 'has-error' : ''}
                             aria-describedby={error ? 'password-error' : undefined}
                         />
@@ -177,9 +184,9 @@ function PasswordDialog({ isOpen, onSuccess, onClose }) {
                     <button
                         type="submit"
                         className="password-submit"
-                        disabled={isLocked || !password}
+                        disabled={isLocked || !password || isValidating}
                     >
-                        {isLocked ? `Locked (${timeRemaining}s)` : 'Enter Editor'}
+                        {isLocked ? `Locked (${timeRemaining}s)` : isValidating ? 'Validating...' : 'Enter Editor'}
                     </button>
                 </form>
 

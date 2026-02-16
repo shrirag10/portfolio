@@ -118,7 +118,7 @@ function Contact() {
           <p className="contact-text">
             <EditableText
               path="contact.description"
-              defaultValue="I'm currently open to full-time Robotics Engineer opportunities and interesting collaboration projects. Whether you have a question, want to discuss robotics, or just want to say hi, I'd love to hear from you."
+              defaultValue="I'm graduating from Northeastern's MS Robotics program in August 2026 and actively interviewing for Robotics Engineer, AMR Systems Engineer, and Manufacturing Automation roles. If you're building robots that work in the real world, let's talk."
               multiline={true}
             />
           </p>

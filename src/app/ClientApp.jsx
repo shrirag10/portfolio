@@ -2,12 +2,11 @@
 
 /**
  * Client-side App Wrapper
- * Imports the existing Vite/React app structure and renders it in Next.js
- * This allows gradual migration while preserving existing functionality
+ * Renders the portfolio content with interactive features.
+ * Editor functionality is available at /admin route.
  */
 
 import { useEffect } from 'react'
-import { AnimatePresence } from 'framer-motion'
 import dynamic from 'next/dynamic'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
@@ -16,36 +15,16 @@ import About from '../components/About'
 import Experience from '../components/Experience'
 import Projects from '../components/Projects'
 import Skills from '../components/Skills'
+import Blog from '../components/Blog'
 import Contact from '../components/Contact'
-import EditModePanel from '../components/EditModePanel'
 import ErrorBoundary from '../components/ErrorBoundary'
 import { ScrollProgressBar, BackToTop } from '../components/PremiumEffects'
-import { useEdit } from '../context/EditContext'
 
 // Dynamically import Three.js scene to avoid SSR issues
 const Scene3D = dynamic(() => import('../components/3d/Scene'), {
     ssr: false,
     loading: () => null,
 })
-
-/**
- * ViewportPreview - Wraps content with device width simulation for edit mode
- */
-function ViewportPreview({ children }) {
-    const { isEditMode, viewport } = useEdit()
-
-    if (!isEditMode || viewport === 'desktop') {
-        return <>{children}</>
-    }
-
-    return (
-        <div className="viewport-preview-container">
-            <div className={`viewport-preview viewport-${viewport}`}>
-                {children}
-            </div>
-        </div>
-    )
-}
 
 export default function ClientApp() {
     // Log visit on mount
@@ -76,19 +55,17 @@ export default function ClientApp() {
             <div className="app">
                 <ScrollProgressBar />
                 <BackToTop />
-                <EditModePanel />
-                <ViewportPreview>
-                    <Navbar />
-                    <main>
-                        <Hero />
-                        <About />
-                        <Experience />
-                        <Projects />
-                        <Skills />
-                        <Contact />
-                    </main>
-                    <Footer />
-                </ViewportPreview>
+                <Navbar />
+                <main>
+                    <Hero />
+                    <About />
+                    <Experience />
+                    <Projects />
+                    <Skills />
+                    <Blog />
+                    <Contact />
+                </main>
+                <Footer />
             </div>
         </ErrorBoundary>
     )

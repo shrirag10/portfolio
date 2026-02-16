@@ -40,7 +40,7 @@ function Hero() {
             <div className="hero-badge pulse-dot" style={{ paddingLeft: '20px' }}>
               <EditableText
                 path="hero.badge"
-                defaultValue="Open to Robotics Engineer opportunities"
+                defaultValue="Open to Full-Time Robotics Engineer Roles — Starting August 2026"
               />
             </div>
 
@@ -63,7 +63,7 @@ function Hero() {
             <p className="hero-subtitle">
               <EditableText
                 path="hero.subtitle"
-                defaultValue={`${personalInfo.tagline}. Specializing in AMR systems, SLAM, and sensor fusion for industrial automation. Currently at Tesla, engineering intelligent material handling solutions that deliver real-world impact.`}
+                defaultValue="I build autonomous mobile robots for manufacturing. At Tesla, I deployed AMR systems projected to save $2.04M/year. Now seeking full-time roles where I can take robotics from prototype to production floor."
                 multiline={true}
               />
             </p>

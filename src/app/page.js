@@ -1,9 +1,9 @@
 import { Suspense } from 'react'
 import dynamic from 'next/dynamic'
 
-// Dynamically import ClientApp to ensure it runs only on client
+// Dynamically import ClientApp - SSR enabled so content is server-rendered
+// Only the interactive parts (3D scene, animations) need client-side JS
 const ClientApp = dynamic(() => import('./ClientApp'), {
-    ssr: false,
     loading: () => (
         <div style={{
             display: 'flex',

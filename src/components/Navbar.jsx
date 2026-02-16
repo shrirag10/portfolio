@@ -189,6 +189,9 @@ function Navbar() {
             <button className="navbar-link" onClick={() => scrollToSection('skills')}>
               <EditableText path="navbar.link4" defaultValue="Skills" />
             </button>
+            <button className="navbar-link" onClick={() => scrollToSection('blog')}>
+              <EditableText path="navbar.link6" defaultValue="Writings" />
+            </button>
             <button className="navbar-link" onClick={() => scrollToSection('contact')}>
               <EditableText path="navbar.link5" defaultValue="Contact" />
             </button>

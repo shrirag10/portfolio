@@ -42,8 +42,8 @@ export async function POST(request) {
         const body = await request.json()
         const { content, password } = body
 
-        const expectedPassword = process.env.NEXT_PUBLIC_EDITOR_PASSWORD || 'admin123'
-        if (password !== expectedPassword) {
+        const expectedPassword = process.env.EDITOR_PASSWORD
+        if (!expectedPassword || password !== expectedPassword) {
             return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
         }
 

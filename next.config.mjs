@@ -1,11 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    // Enable static export for Vercel deployment
-    output: 'export',
-
-    // Disable image optimization for static export
+    // Allow Next.js Image Optimization (Vercel handles this automatically)
     images: {
-        unoptimized: true,
+        unoptimized: false,
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'upload.wikimedia.org',
+            },
+        ],
     },
 
     // Trailing slash for cleaner URLs

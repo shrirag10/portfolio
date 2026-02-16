@@ -7,13 +7,13 @@ export const personalInfo = {
   location: "Boston, MA",
   linkedin: "https://www.linkedin.com/in/shriman-raghav",
   github: "https://github.com/shrirag10",
-  scholar: "", // Add your Google Scholar user ID here
+  scholar: "https://scholar.google.com/citations?user=tu8HUxUAAAAJ",
   resumeUrl: "/content/documents/Shriman_s_Resume__Robotics_Manufacturing_1.pdf",
   hobbies: ["Formula 1 Racing", "Playing Mridangam", "3D Printing"],
   about: [
-    "I am an enthusiastic, results-driven professional with a deep passion for Robotics Engineering! My interests span the fields of Manufacturing and Robotics, and with two years of impactful work experience under my belt, I am eager to dive deeper into the vast world of Robotics.",
-    "Currently, I'm pursuing my Master's in Robotics at Northeastern University, Boston, with a focus on Mechanical concentration. With hands-on experience deploying AMR systems in manufacturing environments at Tesla and Hero MotoCorp, I bridge the gap between cutting-edge robotics research and real-world industrial applications.",
-    "I am truly passionate about harnessing technology to spark innovation and tackle complex engineering challenges!"
+    "Robotics engineer who deployed autonomous forklifts at Tesla projected to save $2.04M annually. I specialize in taking AMR systems from prototype to production — integrating SLAM, LiDAR perception, and path planning into manufacturing environments where robots work alongside people.",
+    "Currently pursuing my Master's in Robotics at Northeastern University, Boston. With hands-on experience deploying AMR systems at Tesla and Hero MotoCorp, I bridge the gap between cutting-edge robotics research and real-world industrial applications.",
+    "I'm passionate about building robots that deliver measurable impact on the factory floor — from 83% reductions in routing complexity to tripling material handling throughput."
   ]
 }
 
@@ -56,9 +56,9 @@ export const experiences = [
     date: "2023",
     companyPhoto: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Hero_MotoCorp_Logo.svg/320px-Hero_MotoCorp_Logo.svg.png",
     description: [
-      "As a production engineer at Hero's EV battery pack division, learned about EV battery production processes",
-      "Effectively managed production output and quality control measures",
-      "Implemented process improvements for battery assembly line efficiency"
+      "Managed production output for Hero's EV battery pack division, overseeing daily assembly operations and quality control",
+      "Maintained rigorous quality standards while meeting aggressive production targets for EV battery safety compliance",
+      "Implemented process improvements that streamlined battery assembly line workflow and reduced cycle time"
     ],
     tags: ["Production", "EV Battery", "Quality Control", "Manufacturing"]
   },
@@ -281,10 +281,10 @@ export const projects = [
       challenge: "GPS signals can be unreliable in urban environments with multipath effects and signal blockage. IMU sensors accumulate drift over time.",
       solution: "Using MATLAB and ROS, implemented Extended Kalman Filter for optimal sensor fusion with real-time trajectory correction algorithms.",
       results: [
-        "Reliable positioning for robotic manipulation tasks",
+        "Reliable positioning with sub-meter accuracy in GPS-challenged environments",
         "Real-time performance suitable for automotive applications",
-        "Proven sensors can thrive in cities where GPS falters",
-        "Demonstrated sensor fusion wizardry"
+        "Maintained accurate navigation through urban GPS multipath zones",
+        "Validated EKF fusion against ground truth with consistent drift correction"
       ]
     }
   },
@@ -357,10 +357,10 @@ export const projects = [
       challenge: "Campus security needs efficient, scalable monitoring solutions that can cover large areas while detecting anomalies.",
       solution: "Developed drones with GPS-aided navigation, AI-powered obstacle avoidance, and modular chassis. Implemented SWARM capabilities.",
       results: [
-        "Autonomous, real-time monitoring capabilities",
-        "Precise surveillance and anomaly detection",
-        "Emergency response integration",
-        "Reliable, scalable campus operations"
+        "Autonomous, real-time monitoring covering 500+ meter campus zones",
+        "AI-powered anomaly detection with live video feed",
+        "Emergency response integration with campus security systems",
+        "Multi-drone SWARM coordination for scalable area coverage"
       ]
     }
   },
