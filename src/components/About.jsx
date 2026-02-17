@@ -20,9 +20,10 @@ const domains = [
     shortLines: ['AI / ML', '/ DL'],
     icon: <Brain size={28} />,
     color: '#6C63FF',
-    skills: ['Machine Learning', 'Deep Learning', 'Neural Networks', 'PyTorch'],
+    skills: ['Machine Learning', 'Deep Learning', 'Reinforcement Learning', 'Neural Networks', 'PyTorch'],
     description: 'Building intelligent systems that learn, adapt, and make decisions from data.',
-    cx: 22, cy: 30, r: 24,
+    cx: 38, cy: 32, r: 28,
+    labelX: 20, labelY: 18,
   },
   {
     id: 'av',
@@ -30,19 +31,10 @@ const domains = [
     shortLines: ['Autonomous', 'Vehicles / CV'],
     icon: <Eye size={28} />,
     color: '#00C9A7',
-    skills: ['Computer Vision', 'Sensor Fusion', 'Object Detection', 'LiDAR'],
+    skills: ['Computer Vision', 'Sensor Fusion', 'Object Detection', 'LiDAR', 'SLAM'],
     description: 'Perception pipelines that let machines see and understand the world.',
-    cx: 88, cy: 30, r: 24,
-  },
-  {
-    id: 'rl',
-    label: 'Reinforcement Learning',
-    shortLines: ['Reinforcement', 'Learning'],
-    icon: <Cpu size={28} />,
-    color: '#FF9F43',
-    skills: ['Policy Gradient', 'Sim-to-Real', 'Reward Shaping', 'MDP'],
-    description: 'Training agents that learn optimal behaviors through trial and interaction.',
-    cx: 55, cy: 20, r: 20,
+    cx: 72, cy: 32, r: 28,
+    labelX: 90, labelY: 18,
   },
   {
     id: 'mobile',
@@ -50,9 +42,10 @@ const domains = [
     shortLines: ['Mobile', 'Robots'],
     icon: <Bot size={28} />,
     color: '#FF6B6B',
-    skills: ['AMR Deployment', 'Path Planning', 'ROS', 'Fleet Mgmt'],
+    skills: ['AMR Deployment', 'Path Planning', 'ROS', 'Fleet Mgmt', 'Navigation'],
     description: 'Deploying robots that move, navigate, and operate in real-world environments.',
-    cx: 55, cy: 62, r: 24,
+    cx: 55, cy: 55, r: 26,
+    labelX: 55, labelY: 74,
   },
   {
     id: 'humanoid',
@@ -60,9 +53,10 @@ const domains = [
     shortLines: ['Humanoid', 'Robotics'],
     icon: <Zap size={28} />,
     color: '#FFD93D',
-    skills: ['Bipedal Locomotion', 'Control Systems', 'Motion Planning'],
+    skills: ['Bipedal Locomotion', 'Control Systems', 'Sim-to-Real', 'Motion Planning'],
     description: 'The next frontier — robots that walk, grasp, and interact like humans.',
-    cx: 22, cy: 84, r: 22,
+    cx: 35, cy: 65, r: 22,
+    labelX: 18, labelY: 78,
   },
   {
     id: 'industrial',
@@ -70,9 +64,10 @@ const domains = [
     shortLines: ['Industrial', 'Engineering'],
     icon: <Factory size={28} />,
     color: '#A78BFA',
-    skills: ['Manufacturing', 'Process Optimization', 'PLC/HMI'],
+    skills: ['Manufacturing', 'Process Optimization', 'PLC/HMI', 'Production Systems'],
     description: 'Bridging robotics and factory floors — real-world manufacturing impact.',
-    cx: 88, cy: 84, r: 22,
+    cx: 75, cy: 65, r: 22,
+    labelX: 92, labelY: 78,
   }
 ]
 
@@ -118,15 +113,15 @@ function About() {
           <Reveal delay={0.2}>
             <div className="whoiam-venn-container">
               <svg
-                viewBox="0 0 115 112"
+                viewBox="0 0 110 92"
                 className={`whoiam-venn-svg ${isVennVisible ? 'animate' : ''}`}
                 preserveAspectRatio="xMidYMid meet"
               >
                 <defs>
                   {domains.map(d => (
                     <radialGradient key={d.id} id={`grad-${d.id}`} cx="50%" cy="50%" r="50%">
-                      <stop offset="0%" stopColor={d.color} stopOpacity="0.35" />
-                      <stop offset="100%" stopColor={d.color} stopOpacity="0.08" />
+                      <stop offset="0%" stopColor={d.color} stopOpacity="0.3" />
+                      <stop offset="100%" stopColor={d.color} stopOpacity="0.06" />
                     </radialGradient>
                   ))}
                 </defs>
@@ -145,34 +140,26 @@ function About() {
                       onMouseLeave={() => setActiveDomain(null)}
                       onClick={() => setActiveDomain(activeDomain === d.id ? null : d.id)}
                     />
-                    {/* Multi-line label */}
+                    {/* Label in the non-overlapping outer region */}
                     <text
-                      x={d.cx} y={d.cy - 3} textAnchor="middle"
+                      x={d.labelX} y={d.labelY} textAnchor="middle"
                       fill={activeDomain && activeDomain !== d.id ? 'var(--text-muted)' : d.color}
-                      fontSize="3.2" fontWeight="700"
+                      fontSize="3" fontWeight="700"
                       fontFamily="var(--font-heading)"
                       style={{ transition: 'all 0.3s ease', pointerEvents: 'none', textTransform: 'uppercase', letterSpacing: '0.05em' }}
                     >
                       {d.shortLines.map((line, li) => (
-                        <tspan key={li} x={d.cx} dy={li === 0 ? 0 : '3.6'}>
+                        <tspan key={li} x={d.labelX} dy={li === 0 ? 0 : '3.5'}>
                           {line}
                         </tspan>
                       ))}
                     </text>
-                    {/* Skill subtitle */}
-                    <text
-                      x={d.cx} y={d.cy + (d.shortLines.length > 1 ? 5 : 3.5)}
-                      textAnchor="middle" dominantBaseline="middle"
-                      fill="var(--text-secondary)" fontSize="2"
-                      style={{ pointerEvents: 'none', opacity: 0.6 }}
-                    >
-                      {d.skills.slice(0, 2).join(' • ')}
-                    </text>
                   </g>
                 ))}
+                {/* Center intersection label */}
                 <text
-                  x="55" y="50" textAnchor="middle" dominantBaseline="middle"
-                  fill="var(--text-primary)" fontSize="3" fontWeight="800"
+                  x="55" y="44" textAnchor="middle" dominantBaseline="middle"
+                  fill="var(--text-primary)" fontSize="3.2" fontWeight="800"
                   fontFamily="var(--font-heading)"
                   style={{ pointerEvents: 'none', opacity: activeDomain ? 0.2 : 0.8, transition: 'opacity 0.3s ease' }}
                 >
