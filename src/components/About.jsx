@@ -20,7 +20,7 @@ const domains = [
     shortLabel: 'AI/ML/DL/RL',
     icon: <Brain size={28} />,
     color: '#6C63FF',
-    skills: ['Machine Learning', 'Deep Learning', 'Reinforcement Learning', 'Neural Networks', 'PyTorch'],
+    skills: ['Deep Learning', 'Reinforcement Learning', 'Machine Learning', 'Neural Networks', 'PyTorch'],
     description: 'Building intelligent systems that learn, adapt, and make decisions from data.',
     cx: 35, cy: 30, r: 26,
   },
@@ -152,15 +152,16 @@ function About() {
                         d.shortLabel
                       )}
                     </text>
-                    {d.r > 18 && (
-                      <text
-                        x={d.cx} y={d.cy + 3.5} textAnchor="middle" dominantBaseline="middle"
-                        fill="var(--text-secondary)" fontSize="2.2"
-                        style={{ pointerEvents: 'none', opacity: 0.7 }}
-                      >
-                        {d.skills.slice(0, 2).join(' • ')}
-                      </text>
-                    )}
+                    {/* Skill subtitles - 2 lines */}
+                    <text
+                      x={d.cx} y={d.cy + (d.shortLines ? 5.5 : 3.5)}
+                      textAnchor="middle" dominantBaseline="middle"
+                      fill="var(--text-secondary)" fontSize="1.8"
+                      style={{ pointerEvents: 'none', opacity: 0.6 }}
+                    >
+                      <tspan x={d.cx} dy="0">{d.skills[0]}</tspan>
+                      <tspan x={d.cx} dy="2.5">{d.skills[1]}</tspan>
+                    </text>
                   </g>
                 ))}
                 <text
