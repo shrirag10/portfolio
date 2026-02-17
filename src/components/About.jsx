@@ -17,7 +17,7 @@ const domains = [
   {
     id: 'ai',
     label: 'AI & Deep Learning',
-    shortLabel: 'AI / ML / DL',
+    shortLabel: 'AI/ML/DL/RL',
     icon: <Brain size={28} />,
     color: '#6C63FF',
     skills: ['Machine Learning', 'Deep Learning', 'Reinforcement Learning', 'Neural Networks', 'PyTorch'],
@@ -47,7 +47,7 @@ const domains = [
   {
     id: 'humanoid',
     label: 'Humanoids',
-    shortLabel: 'Humanoids',
+    shortLines: ['Humanoid', 'Robotics'],
     icon: <Zap size={28} />,
     color: '#FFD93D',
     skills: ['Bipedal Locomotion', 'Control Systems', 'Sim-to-Real', 'Motion Planning'],
@@ -57,7 +57,7 @@ const domains = [
   {
     id: 'industrial',
     label: 'Industrial Engineering',
-    shortLabel: 'Industrial Engg',
+    shortLines: ['Industrial', 'Engg'],
     icon: <Factory size={28} />,
     color: '#A78BFA',
     skills: ['Manufacturing Automation', 'Process Optimization', 'PLC/HMI', 'Production Systems'],
@@ -142,7 +142,15 @@ function About() {
                       fontFamily="var(--font-heading)"
                       style={{ transition: 'all 0.3s ease', pointerEvents: 'none', textTransform: 'uppercase', letterSpacing: '0.05em' }}
                     >
-                      {d.shortLabel}
+                      {d.shortLines ? (
+                        d.shortLines.map((line, li) => (
+                          <tspan key={li} x={d.cx} dy={li === 0 ? 0 : '3.5'}>
+                            {line}
+                          </tspan>
+                        ))
+                      ) : (
+                        d.shortLabel
+                      )}
                     </text>
                     {d.r > 18 && (
                       <text
