@@ -426,7 +426,7 @@ export const education = [
     date: "2024 – 2026",
     gpa: "3.78",
     courses: ["Robot Sensing & Navigation", "Mobile Robotics", "Deep Learning for Robotics"],
-    icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Northeastern_University_seal.svg/1200px-Northeastern_University_seal.svg.png"
+    icon: "/images/northeastern-logo.png"
   },
   {
     degree: "Bachelor of Technology in Mechatronics Engineering",
@@ -435,6 +435,6 @@ export const education = [
     date: "June 2018 – May 2022",
     gpa: "3.81",
     courses: ["Fundamentals of Robotics", "Linear & Digital Control Systems", "Computer Vision"],
-    icon: "https://upload.wikimedia.org/wikipedia/en/f/fe/Srmseal.png"
+    icon: "/images/srm-logo.png"
   }
 ]

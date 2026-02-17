@@ -29,18 +29,25 @@ CREATE INDEX IF NOT EXISTS idx_portfolio_content_updated_at ON portfolio_content
 ALTER TABLE portfolio_content ENABLE ROW LEVEL SECURITY;
 ALTER TABLE visitor_logs ENABLE ROW LEVEL SECURITY;
 
--- 5. Create policies for public read access
+-- 5. Portfolio Content policies
+-- Public read access
 CREATE POLICY "Allow public read access to content"
     ON portfolio_content FOR SELECT
     USING (true);
 
+-- Allow all operations for anon role (auth is handled by the API route via EDITOR_PASSWORD)
+-- Drop the old authenticated-only policy if it exists
+DROP POLICY IF EXISTS "Allow authenticated write to content" ON portfolio_content;
+
+-- Allow anon to insert/update/delete (API route validates the editor password server-side)
+CREATE POLICY "Allow anon write to content"
+    ON portfolio_content FOR ALL
+    USING (true)
+    WITH CHECK (true);
+
+-- 6. Visitor log policies
 CREATE POLICY "Allow public insert for visitor logs"
     ON visitor_logs FOR INSERT
     WITH CHECK (true);
-
--- 6. Create policy for authenticated write access to content
-CREATE POLICY "Allow authenticated write to content"
-    ON portfolio_content FOR ALL
-    USING (auth.role() = 'authenticated');
 
 -- Note: For visitor logs admin access, use the service role key server-side

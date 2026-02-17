@@ -68,11 +68,13 @@ export async function POST(request) {
             .select()
 
         if (error) {
+            console.error('Supabase upsert error:', error)
             return NextResponse.json({ error: error.message }, { status: 500 })
         }
 
         return NextResponse.json({ success: true, updatedAt: new Date().toISOString(), data })
     } catch (err) {
+        console.error('API content POST error:', err)
         return NextResponse.json({ error: err.message }, { status: 500 })
     }
 }
