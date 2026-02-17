@@ -52,7 +52,7 @@ const domains = [
     color: '#FFD93D',
     skills: ['Bipedal Locomotion', 'Control Systems', 'Sim-to-Real', 'Motion Planning'],
     description: 'The next frontier — robots that walk, grasp, and interact like humans.',
-    cx: 28, cy: 72, r: 20,
+    cx: 38, cy: 72, r: 20,
   },
   {
     id: 'industrial',
@@ -62,7 +62,7 @@ const domains = [
     color: '#A78BFA',
     skills: ['Manufacturing Automation', 'Process Optimization', 'PLC/HMI', 'Production Systems'],
     description: 'Bridging robotics and factory floors — real-world manufacturing impact.',
-    cx: 82, cy: 72, r: 20,
+    cx: 72, cy: 72, r: 20,
   }
 ]
 
