@@ -169,11 +169,17 @@ function About() {
                     </text>
                   </g>
                 ))}
+                {/* SHRI center highlight */}
+                <circle
+                  cx="55" cy="46" r="10"
+                  fill="var(--bg-primary)" fillOpacity="0.7"
+                  style={{ pointerEvents: 'none' }}
+                />
                 <text
                   x="55" y="46" textAnchor="middle" dominantBaseline="middle"
-                  fill="url(#shri-gradient)" fontSize="6" fontWeight="900"
+                  fill="url(#shri-gradient)" fontSize="8" fontWeight="900"
                   fontFamily="var(--font-heading)"
-                  style={{ pointerEvents: 'none', opacity: activeDomain ? 0.3 : 1, transition: 'opacity 0.3s ease', letterSpacing: '0.15em', filter: 'drop-shadow(0 0 4px rgba(108,99,255,0.4))' }}
+                  style={{ pointerEvents: 'none', opacity: activeDomain ? 0.4 : 1, transition: 'opacity 0.3s ease', letterSpacing: '0.18em', filter: 'drop-shadow(0 0 6px rgba(108,99,255,0.5)) drop-shadow(0 0 12px rgba(0,201,167,0.3))' }}
                 >
                   SHRI
                 </text>
