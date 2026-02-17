@@ -43,18 +43,26 @@ export async function POST(request) {
 
     try {
         const body = await request.json()
-        const { content, password } = body
+
+        // Support password from both body and Authorization header
+        const authHeader = request.headers.get('Authorization')
+        const password = body.password || (authHeader ? authHeader.replace('Bearer ', '') : null)
 
         const expectedPassword = process.env.EDITOR_PASSWORD
         if (!expectedPassword || password !== expectedPassword) {
             return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
         }
 
+        // Accept content, styles, and sections from the body
+        const { content, styles, sections } = body
+
         const { data, error } = await supabase
             .from('portfolio_content')
             .upsert({
                 id: 'main',
-                content: content,
+                content: content || {},
+                styles: styles || {},
+                sections: sections || [],
                 updated_at: new Date().toISOString()
             })
             .select()
@@ -63,7 +71,7 @@ export async function POST(request) {
             return NextResponse.json({ error: error.message }, { status: 500 })
         }
 
-        return NextResponse.json({ success: true, data })
+        return NextResponse.json({ success: true, updatedAt: new Date().toISOString(), data })
     } catch (err) {
         return NextResponse.json({ error: err.message }, { status: 500 })
     }

@@ -12,6 +12,7 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import Hero from '../components/Hero'
 import About from '../components/About'
+import WhoIAm from '../components/WhoIAm'
 import Experience from '../components/Experience'
 import Projects from '../components/Projects'
 import Skills from '../components/Skills'
@@ -58,6 +59,7 @@ export default function ClientApp() {
                 <Navbar />
                 <main>
                     <Hero />
+                    <WhoIAm />
                     <About />
                     <Experience />
                     <Projects />
