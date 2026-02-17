@@ -22,7 +22,7 @@ const domains = [
     color: '#6C63FF',
     skills: ['Machine Learning', 'Deep Learning', 'Reinforcement Learning', 'Neural Networks', 'PyTorch'],
     description: 'Building intelligent systems that learn, adapt, and make decisions from data.',
-    cx: 38, cy: 32, r: 28,
+    cx: 35, cy: 30, r: 26,
   },
   {
     id: 'av',
@@ -32,7 +32,7 @@ const domains = [
     color: '#00C9A7',
     skills: ['Computer Vision', 'Sensor Fusion', 'Object Detection', 'LiDAR', 'SLAM'],
     description: 'Perception pipelines that let machines see and understand the world.',
-    cx: 62, cy: 32, r: 28,
+    cx: 75, cy: 30, r: 26,
   },
   {
     id: 'mobile',
@@ -42,7 +42,7 @@ const domains = [
     color: '#FF6B6B',
     skills: ['AMR Deployment', 'Path Planning', 'ROS', 'Fleet Management', 'Navigation'],
     description: 'Deploying robots that move, navigate, and operate in real-world environments.',
-    cx: 50, cy: 56, r: 26,
+    cx: 55, cy: 55, r: 24,
   },
   {
     id: 'humanoid',
@@ -52,7 +52,7 @@ const domains = [
     color: '#FFD93D',
     skills: ['Bipedal Locomotion', 'Control Systems', 'Sim-to-Real', 'Motion Planning'],
     description: 'The next frontier — robots that walk, grasp, and interact like humans.',
-    cx: 38, cy: 68, r: 18,
+    cx: 28, cy: 72, r: 20,
   },
   {
     id: 'industrial',
@@ -62,7 +62,7 @@ const domains = [
     color: '#A78BFA',
     skills: ['Manufacturing Automation', 'Process Optimization', 'PLC/HMI', 'Production Systems'],
     description: 'Bridging robotics and factory floors — real-world manufacturing impact.',
-    cx: 72, cy: 68, r: 18,
+    cx: 82, cy: 72, r: 20,
   }
 ]
 
@@ -108,7 +108,7 @@ function About() {
           <Reveal delay={0.2}>
             <div className="whoiam-venn-container">
               <svg
-                viewBox="0 0 100 90"
+                viewBox="0 0 110 100"
                 className={`whoiam-venn-svg ${isVennVisible ? 'animate' : ''}`}
                 preserveAspectRatio="xMidYMid meet"
               >
@@ -138,16 +138,16 @@ function About() {
                     <text
                       x={d.cx} y={d.cy - 1} textAnchor="middle" dominantBaseline="middle"
                       fill={activeDomain && activeDomain !== d.id ? 'var(--text-muted)' : d.color}
-                      fontSize={d.r > 20 ? 3.2 : 2.8} fontWeight="700"
+                      fontSize={d.r > 22 ? 3.8 : 3.2} fontWeight="700"
                       fontFamily="var(--font-heading)"
                       style={{ transition: 'all 0.3s ease', pointerEvents: 'none', textTransform: 'uppercase', letterSpacing: '0.05em' }}
                     >
                       {d.shortLabel}
                     </text>
-                    {d.r > 20 && (
+                    {d.r > 18 && (
                       <text
-                        x={d.cx} y={d.cy + 3} textAnchor="middle" dominantBaseline="middle"
-                        fill="var(--text-secondary)" fontSize="2"
+                        x={d.cx} y={d.cy + 3.5} textAnchor="middle" dominantBaseline="middle"
+                        fill="var(--text-secondary)" fontSize="2.2"
                         style={{ pointerEvents: 'none', opacity: 0.7 }}
                       >
                         {d.skills.slice(0, 2).join(' • ')}
@@ -156,8 +156,8 @@ function About() {
                   </g>
                 ))}
                 <text
-                  x="50" y="44" textAnchor="middle" dominantBaseline="middle"
-                  fill="var(--text-primary)" fontSize="2.5" fontWeight="800"
+                  x="55" y="46" textAnchor="middle" dominantBaseline="middle"
+                  fill="var(--text-primary)" fontSize="3" fontWeight="800"
                   fontFamily="var(--font-heading)"
                   style={{ pointerEvents: 'none', opacity: activeDomain ? 0.2 : 0.8, transition: 'opacity 0.3s ease' }}
                 >
