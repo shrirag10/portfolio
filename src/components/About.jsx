@@ -119,6 +119,11 @@ function About() {
                       <stop offset="100%" stopColor={d.color} stopOpacity="0.08" />
                     </radialGradient>
                   ))}
+                  <linearGradient id="shri-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#6C63FF" />
+                    <stop offset="50%" stopColor="#00C9A7" />
+                    <stop offset="100%" stopColor="#FF6B6B" />
+                  </linearGradient>
                 </defs>
                 {domains.map((d, i) => (
                   <g key={d.id}>
@@ -166,9 +171,9 @@ function About() {
                 ))}
                 <text
                   x="55" y="46" textAnchor="middle" dominantBaseline="middle"
-                  fill="var(--text-primary)" fontSize="3" fontWeight="800"
+                  fill="url(#shri-gradient)" fontSize="6" fontWeight="900"
                   fontFamily="var(--font-heading)"
-                  style={{ pointerEvents: 'none', opacity: activeDomain ? 0.2 : 0.8, transition: 'opacity 0.3s ease' }}
+                  style={{ pointerEvents: 'none', opacity: activeDomain ? 0.3 : 1, transition: 'opacity 0.3s ease', letterSpacing: '0.15em', filter: 'drop-shadow(0 0 4px rgba(108,99,255,0.4))' }}
                 >
                   SHRI
                 </text>
