@@ -17,52 +17,62 @@ const domains = [
   {
     id: 'ai',
     label: 'AI & Deep Learning',
-    shortLabel: 'AI / ML / DL',
+    shortLines: ['AI / ML', '/ DL'],
     icon: <Brain size={28} />,
     color: '#6C63FF',
-    skills: ['Machine Learning', 'Deep Learning', 'Reinforcement Learning', 'Neural Networks', 'PyTorch'],
+    skills: ['Machine Learning', 'Deep Learning', 'Neural Networks', 'PyTorch'],
     description: 'Building intelligent systems that learn, adapt, and make decisions from data.',
-    cx: 35, cy: 30, r: 26,
+    cx: 22, cy: 30, r: 24,
   },
   {
     id: 'av',
     label: 'Autonomous Vehicles & CV',
-    shortLabel: 'AV / CV',
+    shortLines: ['Autonomous', 'Vehicles / CV'],
     icon: <Eye size={28} />,
     color: '#00C9A7',
-    skills: ['Computer Vision', 'Sensor Fusion', 'Object Detection', 'LiDAR', 'SLAM'],
+    skills: ['Computer Vision', 'Sensor Fusion', 'Object Detection', 'LiDAR'],
     description: 'Perception pipelines that let machines see and understand the world.',
-    cx: 75, cy: 30, r: 26,
+    cx: 88, cy: 30, r: 24,
+  },
+  {
+    id: 'rl',
+    label: 'Reinforcement Learning',
+    shortLines: ['Reinforcement', 'Learning'],
+    icon: <Cpu size={28} />,
+    color: '#FF9F43',
+    skills: ['Policy Gradient', 'Sim-to-Real', 'Reward Shaping', 'MDP'],
+    description: 'Training agents that learn optimal behaviors through trial and interaction.',
+    cx: 55, cy: 20, r: 20,
   },
   {
     id: 'mobile',
     label: 'Mobile & Field Robots',
-    shortLabel: 'Mobile Robots',
+    shortLines: ['Mobile', 'Robots'],
     icon: <Bot size={28} />,
     color: '#FF6B6B',
-    skills: ['AMR Deployment', 'Path Planning', 'ROS', 'Fleet Management', 'Navigation'],
+    skills: ['AMR Deployment', 'Path Planning', 'ROS', 'Fleet Mgmt'],
     description: 'Deploying robots that move, navigate, and operate in real-world environments.',
-    cx: 55, cy: 55, r: 24,
+    cx: 55, cy: 62, r: 24,
   },
   {
     id: 'humanoid',
     label: 'Humanoids',
-    shortLabel: 'Humanoids',
+    shortLines: ['Humanoid', 'Robotics'],
     icon: <Zap size={28} />,
     color: '#FFD93D',
-    skills: ['Bipedal Locomotion', 'Control Systems', 'Sim-to-Real', 'Motion Planning'],
+    skills: ['Bipedal Locomotion', 'Control Systems', 'Motion Planning'],
     description: 'The next frontier — robots that walk, grasp, and interact like humans.',
-    cx: 28, cy: 72, r: 20,
+    cx: 22, cy: 84, r: 22,
   },
   {
     id: 'industrial',
     label: 'Industrial Engineering',
-    shortLabel: 'Industrial Engg',
+    shortLines: ['Industrial', 'Engineering'],
     icon: <Factory size={28} />,
     color: '#A78BFA',
-    skills: ['Manufacturing Automation', 'Process Optimization', 'PLC/HMI', 'Production Systems'],
+    skills: ['Manufacturing', 'Process Optimization', 'PLC/HMI'],
     description: 'Bridging robotics and factory floors — real-world manufacturing impact.',
-    cx: 82, cy: 72, r: 20,
+    cx: 88, cy: 84, r: 22,
   }
 ]
 
@@ -108,7 +118,7 @@ function About() {
           <Reveal delay={0.2}>
             <div className="whoiam-venn-container">
               <svg
-                viewBox="0 0 110 100"
+                viewBox="0 0 115 112"
                 className={`whoiam-venn-svg ${isVennVisible ? 'animate' : ''}`}
                 preserveAspectRatio="xMidYMid meet"
               >
@@ -135,28 +145,33 @@ function About() {
                       onMouseLeave={() => setActiveDomain(null)}
                       onClick={() => setActiveDomain(activeDomain === d.id ? null : d.id)}
                     />
+                    {/* Multi-line label */}
                     <text
-                      x={d.cx} y={d.cy - 1} textAnchor="middle" dominantBaseline="middle"
+                      x={d.cx} y={d.cy - 3} textAnchor="middle"
                       fill={activeDomain && activeDomain !== d.id ? 'var(--text-muted)' : d.color}
-                      fontSize={d.r > 22 ? 3.8 : 3.2} fontWeight="700"
+                      fontSize="3.2" fontWeight="700"
                       fontFamily="var(--font-heading)"
                       style={{ transition: 'all 0.3s ease', pointerEvents: 'none', textTransform: 'uppercase', letterSpacing: '0.05em' }}
                     >
-                      {d.shortLabel}
+                      {d.shortLines.map((line, li) => (
+                        <tspan key={li} x={d.cx} dy={li === 0 ? 0 : '3.6'}>
+                          {line}
+                        </tspan>
+                      ))}
                     </text>
-                    {d.r > 18 && (
-                      <text
-                        x={d.cx} y={d.cy + 3.5} textAnchor="middle" dominantBaseline="middle"
-                        fill="var(--text-secondary)" fontSize="2.2"
-                        style={{ pointerEvents: 'none', opacity: 0.7 }}
-                      >
-                        {d.skills.slice(0, 2).join(' • ')}
-                      </text>
-                    )}
+                    {/* Skill subtitle */}
+                    <text
+                      x={d.cx} y={d.cy + (d.shortLines.length > 1 ? 5 : 3.5)}
+                      textAnchor="middle" dominantBaseline="middle"
+                      fill="var(--text-secondary)" fontSize="2"
+                      style={{ pointerEvents: 'none', opacity: 0.6 }}
+                    >
+                      {d.skills.slice(0, 2).join(' • ')}
+                    </text>
                   </g>
                 ))}
                 <text
-                  x="55" y="46" textAnchor="middle" dominantBaseline="middle"
+                  x="55" y="50" textAnchor="middle" dominantBaseline="middle"
                   fill="var(--text-primary)" fontSize="3" fontWeight="800"
                   fontFamily="var(--font-heading)"
                   style={{ pointerEvents: 'none', opacity: activeDomain ? 0.2 : 0.8, transition: 'opacity 0.3s ease' }}
