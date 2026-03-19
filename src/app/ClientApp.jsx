@@ -15,6 +15,7 @@ import About from '../components/About'
 import Experience from '../components/Experience'
 import Projects from '../components/Projects'
 import Skills from '../components/Skills'
+import Publications from '../components/Publications'
 import Blog from '../components/Blog'
 import Contact from '../components/Contact'
 import ErrorBoundary from '../components/ErrorBoundary'
@@ -62,6 +63,7 @@ export default function ClientApp() {
                     <Experience />
                     <Projects />
                     <Skills />
+                    <Publications />
                     <Blog />
                     <Contact />
                 </main>

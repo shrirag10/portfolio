@@ -12,7 +12,7 @@ function Footer() {
         <div className="footer-inner">
           <p className="footer-text">
             © {currentYear} <EditableText path="footer.name" defaultValue={personalInfo.name} />.
-            <EditableText path="footer.tagline" defaultValue=" Built with React." />
+            <EditableText path="footer.tagline" defaultValue=" Built with Next.js." />
           </p>
 
           <div className="footer-links">

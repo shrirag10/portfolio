@@ -84,19 +84,32 @@ function Contact() {
 
     setStatus('sending')
 
-    const mailtoLink = `mailto:${personalInfo.email}?subject=${encodeURIComponent(formData.subject || 'Contact from Portfolio')}&body=${encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
-    )}`
+    try {
+      const formspreeId = process.env.NEXT_PUBLIC_FORMSPREE_ID
+      if (!formspreeId) throw new Error('Formspree ID not configured')
 
-    window.location.href = mailtoLink
+      const res = await fetch(`https://formspree.io/f/${formspreeId}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject || 'Contact from Portfolio',
+          message: formData.message,
+        }),
+      })
 
-    setTimeout(() => {
+      if (!res.ok) throw new Error('Submission failed')
+
       setStatus('success')
       setFormData({ name: '', email: '', subject: '', message: '' })
       setErrors({})
       setTouched({})
       setTimeout(() => setStatus('idle'), 3000)
-    }, 500)
+    } catch {
+      setStatus('error')
+      setTimeout(() => setStatus('idle'), 3000)
+    }
   }
 
   return (

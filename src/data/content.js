@@ -28,10 +28,11 @@ export const experiences = [
     description: [
       "Driving deployment of autonomous forklift AMRs using SLAM, LiDAR, and 3D pallet vision, projected to deliver $2.04M in cost savings",
       "Programmed AMR path planning using penalty-optimized Theta* algorithm, reducing routing complexity by 83%",
+      "Built VIGIL — an AI-powered pedestrian safety system for forklifts with 7 swappable YOLO/RT-DETR models, React dashboard, gRPC streaming, and Kafka event pipelines",
       "Developed RAG-based AI LLM agent for machine documentation, reducing diagnostic response time by 17%",
       "Engineering DFMEA enhancements for AGV operations targeting 35% downtime reduction"
     ],
-    tags: ["AMR", "SLAM", "LiDAR", "Path Planning", "LLM", "DFMEA"]
+    tags: ["AMR", "SLAM", "LiDAR", "Path Planning", "LLM", "DFMEA", "Computer Vision"]
   },
   {
     id: "hero-manager",
@@ -130,6 +131,35 @@ export const projects = [
         "Generated smooth, any-angle trajectories",
         "Reduced travel time and mechanical wear on AMRs",
         "Real-time replanning capabilities enabled"
+      ]
+    }
+  },
+  {
+    id: "tesla-vigil",
+    title: "VIGIL — AI Pedestrian Safety System",
+    subdomain: "Computer Vision",
+    type: "professional",
+    company: "Tesla Inc.",
+    companyLogo: "https://upload.wikimedia.org/wikipedia/commons/e/e8/Tesla_logo.png",
+    category: "AI Safety Systems",
+    description: "Production-grade AI pedestrian detection system for warehouse forklifts, featuring 7 swappable detection models, real-time React dashboard, gRPC streaming, and Kafka event pipelines.",
+    featured: true,
+    image: "/images/vigil-dashboard.png",
+    tech: ["YOLOv8", "RT-DETR", "FastAPI", "React", "gRPC", "Kafka", "Python"],
+    date: "2025",
+    role: "Lead Developer",
+    github: "https://github.com/shrirag10/VIGIL",
+    video: "/videos/vigil-demo.mp4",
+    details: {
+      overview: "VIGIL (Vehicle-Installed Guard for Injury Limitation) is a production-grade AI safety system that mounts on warehouse forklifts to detect pedestrians in real time. It ships with 7 swappable AI models — from lightweight YOLO11 Nano to high-accuracy RT-DETR transformers.",
+      challenge: "Warehouse forklifts operate in dynamic environments with pedestrians, requiring real-time detection with zero tolerance for missed detections while maintaining low latency for immediate alerts.",
+      solution: "Built a full-stack system with a FastAPI backend running a multi-model detection pipeline (YOLOv8n through RT-DETR), custom safety zone engine, gRPC streaming for real-time alerts, and a React command-center dashboard with live KPI monitoring.",
+      results: [
+        "7 swappable AI models with zero-downtime runtime switching",
+        "Real-time MJPEG streaming with HUD overlays and detection counts",
+        "Custom safety zone engine with violation tracking and alerting",
+        "Full analytics suite with hourly charts, camera distribution, and PDF report generation",
+        "gRPC + Kafka integration for enterprise-scale event streaming"
       ]
     }
   },
@@ -233,6 +263,35 @@ export const projects = [
         "Optimized total path length per maze",
         "Reduced total traversal time significantly",
         "Demonstrated robust control logic"
+      ]
+    }
+  },
+  {
+    id: "robustwalker",
+    title: "RobustWalker — RL Quadruped Locomotion",
+    subdomain: "Reinforcement Learning",
+    type: "academic",
+    companyLogo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Northeastern_University_seal.svg/1200px-Northeastern_University_seal.svg.png",
+    category: "Reinforcement Learning",
+    description: "PPO-based neural network policy for Unitree Go1 quadruped robot, achieving robust blind locomotion on rough terrain using proprioceptive sensing and domain randomization.",
+    featured: true,
+    image: "/images/extracted/personal/image1.jpg",
+    tech: ["PPO", "MuJoCo", "Stable-Baselines3", "Python", "Reinforcement Learning"],
+    date: "2025",
+    role: "Personal Project",
+    github: "https://github.com/shrirag10/ROBUSTWALKER",
+    video: "/videos/robustwalker-demo.mp4",
+    demo: "https://drive.google.com/file/d/1CoJNGUmFYeM_CfP4g9liCz5-LFeYYQjU/view?usp=sharing",
+    details: {
+      overview: "RobustWalker trains a PPO-based neural network policy to control the Unitree Go1 quadruped robot using only proprioceptive sensing (no cameras or LiDAR). The robot learns to walk robustly on rough terrain and recover from external disturbances.",
+      challenge: "Quadruped locomotion on uneven terrain without vision sensors requires the policy to generalize across varied physical conditions — friction, payload, motor strength, and unexpected pushes.",
+      solution: "Implemented domain randomization during training to randomize friction, payload, motor strength, and external forces. Used a multi-objective reward function balancing forward velocity, energy efficiency, and stability. Trained with vectorized parallel environments via Stable-Baselines3.",
+      results: [
+        "Robust blind locomotion using only joint encoders and IMU",
+        "Sim-to-real ready through extensive domain randomization",
+        "12-dimensional action space controlling all joint position targets",
+        "57-dimensional observation space with action history for temporal reasoning",
+        "Comprehensive reward shaping for natural gait patterns"
       ]
     }
   },
@@ -415,6 +474,10 @@ export const skills = {
   software: {
     title: "Software & DevOps",
     items: ["Git/GitHub", "MATLAB/Simulink", "SolidWorks", "Docker", "Kubernetes", "Splunk", "Power BI", "AutoCAD"]
+  },
+  manufacturing: {
+    title: "Manufacturing",
+    items: ["Lean Manufacturing", "Six Sigma (DMAIC)", "DFMEA/PFMEA", "GD&T", "CNC Machining", "Injection Molding", "Die Casting", "Laser Beam Machining"]
   }
 }
 
@@ -436,5 +499,38 @@ export const education = [
     gpa: "3.81",
     courses: ["Fundamentals of Robotics", "Linear & Digital Control Systems", "Computer Vision"],
     icon: "/images/srm-logo.png"
+  }
+]
+
+export const publications = [
+  {
+    id: "sod-leather-carbonization",
+    title: "Investigation of SOD control on leather carbonization in diode laser cutting",
+    authors: ["S. Vasanth", "T. Muthuramalingam", "S. Surya Prakash", "S. Shriman Raghav"],
+    journal: "Materials and Manufacturing Processes",
+    year: 2022,
+    citations: 20,
+    doi: "https://scholar.google.com/citations?view_op=view_citation&user=tu8HUxUAAAAJ&citation_for_view=tu8HUxUAAAAJ:J-pR_7NvFogC",
+    tags: ["Laser Cutting", "SOD Control", "Leather Manufacturing"]
+  },
+  {
+    id: "pwm-laser-sod",
+    title: "Experimental investigation of PWM laser standoff distance control for power diode based LBM",
+    authors: ["S. Vasanth", "T. Muthuramalingam", "S. Surya Prakash", "S. Shriman Raghav", "G. Logeshwaran"],
+    journal: "Optics & Laser Technology",
+    year: 2023,
+    citations: 13,
+    doi: "https://www.sciencedirect.com/science/article/pii/S0030399222010623",
+    tags: ["PWM Control", "Laser Beam Machining", "Standoff Distance"]
+  },
+  {
+    id: "combined-sod-pwm",
+    title: "Implementation and performance analysis of combined SOD and PWM control in diode based laser beam machining process on leather specimen",
+    authors: ["S. Vasanth", "T. Muthuramalingam", "S. Surya Prakash", "S. Shriman Raghav", "G. Logeshwaran"],
+    journal: "Optics & Laser Technology",
+    year: 2024,
+    citations: 6,
+    doi: "https://www.sciencedirect.com/science/article/pii/S0030399223009866",
+    tags: ["SOD + PWM", "Diode Laser", "Performance Analysis"]
   }
 ]

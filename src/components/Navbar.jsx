@@ -18,6 +18,7 @@ function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [projectsDropdownOpen, setProjectsDropdownOpen] = useState(false)
   const [theme, setTheme] = useState('dark')
+  const [activeSection, setActiveSection] = useState('hero')
   const pathname = usePathname()
   const isHome = pathname === '/'
   const { isEditMode } = useEdit()
@@ -46,6 +47,22 @@ function Navbar() {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  // Track active section via IntersectionObserver
+  useEffect(() => {
+    if (!isHome) return
+    const sections = document.querySelectorAll('section[id]')
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) setActiveSection(entry.target.id)
+        })
+      },
+      { rootMargin: '-40% 0px -55% 0px' }
+    )
+    sections.forEach(s => observer.observe(s))
+    return () => observer.disconnect()
+  }, [isHome])
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -94,10 +111,10 @@ function Navbar() {
           </a>
 
           <div className={`navbar-links ${mobileOpen ? 'mobile-open' : ''}`}>
-            <button className="navbar-link" onClick={() => scrollToSection('about')}>
+            <button className={`navbar-link ${activeSection === 'about' ? 'navbar-link--active' : ''}`} onClick={() => scrollToSection('about')}>
               <EditableText path="navbar.link1" defaultValue="About" />
             </button>
-            <button className="navbar-link" onClick={() => scrollToSection('experience')}>
+            <button className={`navbar-link ${activeSection === 'experience' ? 'navbar-link--active' : ''}`} onClick={() => scrollToSection('experience')}>
               <EditableText path="navbar.link2" defaultValue="Experience" />
             </button>
 
@@ -186,13 +203,16 @@ function Navbar() {
               )}
             </div>
 
-            <button className="navbar-link" onClick={() => scrollToSection('skills')}>
+            <button className={`navbar-link ${activeSection === 'skills' ? 'navbar-link--active' : ''}`} onClick={() => scrollToSection('skills')}>
               <EditableText path="navbar.link4" defaultValue="Skills" />
             </button>
-            <button className="navbar-link" onClick={() => scrollToSection('blog')}>
-              <EditableText path="navbar.link6" defaultValue="Tech Musings" />
+            <button className={`navbar-link ${activeSection === 'publications' ? 'navbar-link--active' : ''}`} onClick={() => scrollToSection('publications')}>
+              <EditableText path="navbar.link7" defaultValue="Publications" />
             </button>
-            <button className="navbar-link" onClick={() => scrollToSection('contact')}>
+            <button className={`navbar-link ${activeSection === 'blog' ? 'navbar-link--active' : ''}`} onClick={() => scrollToSection('blog')}>
+              <EditableText path="navbar.link6" defaultValue="Engineering Blog" />
+            </button>
+            <button className={`navbar-link ${activeSection === 'contact' ? 'navbar-link--active' : ''}`} onClick={() => scrollToSection('contact')}>
               <EditableText path="navbar.link5" defaultValue="Contact" />
             </button>
 

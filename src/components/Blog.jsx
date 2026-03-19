@@ -13,10 +13,10 @@ function Blog() {
                 <div className="section-header" style={{ textAlign: 'center' }}>
                     <p className="section-label" style={{ justifyContent: 'center' }}>
                         <BookOpen size={16} />
-                        Tech Musings
+                        Engineering Blog
                     </p>
                     <h2>
-                        Tech <span className="gradient-text">Musings</span>
+                        Engineering <span className="gradient-text">Blog</span>
                     </h2>
                     <p className="section-subtitle" style={{ maxWidth: '600px', margin: '0 auto', color: 'var(--text-secondary)' }}>
                         Thoughts on robotics, AI, and the engineering journey — originally shared on LinkedIn.

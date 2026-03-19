@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef, useCallback } from 'react'
 import { ArrowRight, Building2, GraduationCap } from 'lucide-react'
 import { projects } from '../data/content'
 import { EditableText, EditableTags, EditableImage } from './Editable'
@@ -10,10 +10,13 @@ const subdomains = [
   { id: 'all', label: 'All Projects' },
   { id: 'Manufacturing', label: 'Manufacturing' },
   { id: 'Perception-SLAM', label: 'Perception & SLAM' },
+  { id: 'Computer Vision', label: 'Computer Vision' },
+  { id: 'Reinforcement Learning', label: 'Reinforcement Learning' },
   { id: 'Deep Learning', label: 'Deep Learning' },
   { id: 'Mechanical', label: 'Mechanical' },
   { id: 'Aerial Robotics', label: 'Aerial' },
-  { id: 'Underwater Robotics', label: 'Underwater' }
+  { id: 'Underwater Robotics', label: 'Underwater' },
+  { id: 'Control Systems', label: 'Control Systems' }
 ]
 
 function Projects({
@@ -28,6 +31,23 @@ function Projects({
   const { getContent } = useEdit()
   const [activeFilter, setActiveFilter] = useState('all')
   const [searchTerm, setSearchTerm] = useState('')
+  const videoRefs = useRef({})
+
+  const handleMouseEnter = useCallback((projectId) => {
+    const video = videoRefs.current[projectId]
+    if (video) {
+      video.currentTime = 0
+      video.play().catch(() => { })
+    }
+  }, [])
+
+  const handleMouseLeave = useCallback((projectId) => {
+    const video = videoRefs.current[projectId]
+    if (video) {
+      video.pause()
+      video.currentTime = 0
+    }
+  }, [])
 
   // Filter existing projects by the passed prop filter (e.g. company or type)
   const baseProjects = projects.filter(p => {
@@ -154,6 +174,13 @@ function Projects({
               href={`/project/${project.id}`}
               className={`project-card ${project.featured ? 'featured' : ''}`}
               key={project.id}
+              onMouseMove={(e) => {
+                const rect = e.currentTarget.getBoundingClientRect()
+                e.currentTarget.style.setProperty('--spotlight-x', `${e.clientX - rect.left}px`)
+                e.currentTarget.style.setProperty('--spotlight-y', `${e.clientY - rect.top}px`)
+              }}
+              onMouseEnter={() => handleMouseEnter(project.id)}
+              onMouseLeave={() => handleMouseLeave(project.id)}
             >
               <div className="project-image">
                 <EditableImage
@@ -162,6 +189,19 @@ function Projects({
                   alt={project.title}
                   className="project-card-image"
                 />
+
+                {/* Hover-to-play video overlay */}
+                {project.video && (
+                  <video
+                    ref={(el) => { if (el) videoRefs.current[project.id] = el }}
+                    src={project.video}
+                    muted
+                    loop
+                    playsInline
+                    preload="none"
+                    className="project-card-video"
+                  />
+                )}
 
                 {/* Type Badge (Professional/Academic) */}
                 <div style={{

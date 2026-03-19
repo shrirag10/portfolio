@@ -1235,6 +1235,317 @@ button {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   position: relative;
+  --spotlight-x: 50%;
+  --spotlight-y: 50%;
+}
+
+/* Card Spotlight Effect — cursor-following radial glow */
+.project-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  background: radial-gradient(600px circle at var(--spotlight-x) var(--spotlight-y),
+      rgba(99, 102, 241, 0.12),
+      rgba(139, 92, 246, 0.06) 30%,
+      transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.project-card:hover::after {
+  opacity: 1;
+}
+
+/* Text Scramble */
+.text-scramble {
+  display: inline-block;
+  min-width: 1ch;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Animated Counter */
+.animated-counter {
+  font-variant-numeric: tabular-nums;
+  display: inline-block;
+}
+
+/* ========================================
+   VIDEO HOVER — Project Cards
+   ======================================== */
+.project-card-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 0;
+}
+
+.project-card:hover .project-card-video {
+  opacity: 1;
+}
+
+.project-card:hover .project-card-image {
+  opacity: 0;
+}
+
+.project-card-image {
+  transition: opacity 0.5s ease;
+}
+
+/* ========================================
+   VIDEO DIALOG — Play Button + Modal
+   ======================================== */
+.video-dialog-trigger {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.video-play-btn {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: rgba(99, 102, 241, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 4px;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 32px rgba(99, 102, 241, 0.4);
+}
+
+.video-play-btn:hover {
+  transform: scale(1.1);
+  background: rgba(99, 102, 241, 1);
+  box-shadow: 0 12px 48px rgba(99, 102, 241, 0.6);
+}
+
+.video-play-btn-ring {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 2px solid rgba(99, 102, 241, 0.4);
+  animation: video-ring-pulse 2s ease-out infinite;
+}
+
+@keyframes video-ring-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.video-dialog-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: video-fade-in 0.3s ease;
+  padding: 24px;
+}
+
+@keyframes video-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.video-dialog-content {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: black;
+  box-shadow: 0 32px 96px rgba(0, 0, 0, 0.5);
+  animation: video-scale-in 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes video-scale-in {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.video-dialog-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s ease;
+}
+
+.video-dialog-close:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.video-dialog-player {
+  width: 100%;
+  display: block;
+  max-height: 80vh;
+}
+
+/* ========================================
+   ORBITING SKILLS
+   ======================================== */
+.orbiting-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.orbit-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  z-index: 5;
+}
+
+.orbit-center-text {
+  font-size: 1.25rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary, #8b5cf6));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.orbit-center-sub {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.orbit-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(99, 102, 241, 0.12);
+  pointer-events: none;
+}
+
+.orbit-item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  animation: orbit-rotate var(--orbit-duration) linear infinite;
+  animation-direction: var(--orbit-direction, normal);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.orbit-item-visible {
+  opacity: 1;
+}
+
+@keyframes orbit-rotate {
+  from {
+    transform: rotate(var(--orbit-start-angle)) translateX(var(--orbit-radius)) rotate(calc(-1 * var(--orbit-start-angle)));
+  }
+
+  to {
+    transform: rotate(calc(var(--orbit-start-angle) + 360deg)) translateX(var(--orbit-radius)) rotate(calc(-1 * (var(--orbit-start-angle) + 360deg)));
+  }
+}
+
+.orbit-skill-tag {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  white-space: nowrap;
+  background: rgba(22, 27, 34, 0.9);
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  color: var(--text-primary);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transform: translate(-50%, -50%);
+  cursor: default;
+  transition: all 0.3s ease;
+}
+
+.orbit-skill-tag:hover {
+  border-color: rgba(99, 102, 241, 0.6);
+  box-shadow: 0 0 16px rgba(99, 102, 241, 0.3);
+  background: rgba(99, 102, 241, 0.15);
+}
+
+/* Responsive orbit sizing */
+@media (max-width: 640px) {
+  .orbiting-container {
+    max-width: 320px;
+  }
+
+  .orbit-skill-tag {
+    font-size: 0.6rem;
+    padding: 4px 10px;
+  }
+
+  .orbit-center-text {
+    font-size: 1rem;
+  }
+}
+
+/* Light theme adjustments */
+[data-theme="light"] .orbit-skill-tag {
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--text-primary);
+  border-color: rgba(99, 102, 241, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .orbit-ring {
+  border-color: rgba(99, 102, 241, 0.15);
 }
 
 .project-card::before {
@@ -1449,6 +1760,222 @@ button {
 .skill-item:hover {
   background: var(--accent-glow);
   color: var(--accent-secondary);
+}
+
+/* ================================
+   Publications Section
+   ================================ */
+.publications {
+  background: var(--bg-primary);
+}
+
+.publications-stats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 48px;
+  padding: 24px 40px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pub-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.pub-stat-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+}
+
+.pub-stat-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.pub-stat-divider {
+  width: 1px;
+  height: 40px;
+  background: var(--border-subtle);
+}
+
+.publications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.publication-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+}
+
+.publication-card-inner {
+  padding: 28px 32px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  transition: all 0.3s ease;
+}
+
+.publication-card:hover .publication-card-inner {
+  border-color: var(--accent-primary);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(59, 130, 246, 0.12);
+}
+
+.publication-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.publication-year-badge {
+  padding: 4px 12px;
+  background: var(--bg-tertiary);
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 0.5px;
+}
+
+.citation-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.12), rgba(139, 92, 246, 0.12));
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent-primary);
+}
+
+.publication-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.5;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+}
+
+.publication-authors {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+.author-highlight {
+  color: var(--accent-primary);
+  font-weight: 600;
+}
+
+.publication-journal {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+
+.publication-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.publication-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pub-tag {
+  padding: 4px 10px;
+  background: var(--bg-tertiary);
+  border-radius: 6px;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  transition: var(--transition-fast);
+}
+
+.publication-card:hover .pub-tag {
+  background: var(--accent-glow);
+  color: var(--accent-secondary);
+}
+
+.publication-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--accent-primary);
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: all 0.3s ease;
+}
+
+.publication-card:hover .publication-link {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Publications Responsive */
+@media (max-width: 768px) {
+  .publications-stats {
+    gap: 24px;
+    padding: 20px 24px;
+  }
+
+  .pub-stat-value {
+    font-size: 1.4rem;
+  }
+
+  .publication-card-inner {
+    padding: 20px;
+  }
+
+  .publication-title {
+    font-size: 1rem;
+  }
+
+  .publication-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .publication-link {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* ================================
@@ -1809,7 +2336,7 @@ button {
   }
 
   .hero-image {
-    order: -1;
+    order: 2;
   }
 
   .hero-image-wrapper {
@@ -1849,11 +2376,39 @@ button {
   .project-detail-sidebar {
     position: static;
   }
+
+  /* Tablet image fixes */
+  .project-image {
+    width: 100%;
+  }
+
+  .project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .project-card.featured .project-image {
+    height: 240px;
+  }
 }
 
 @media (max-width: 768px) {
   :root {
     --section-padding: 80px;
+  }
+
+  /* Tablet hero image fix */
+  .hero-image-wrapper {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    aspect-ratio: 5 / 6;
+  }
+
+  .hero-image-main {
+    width: 100%;
+    height: 100%;
   }
 
   /* Mobile Menu Button - Always visible on mobile */
@@ -2047,6 +2602,15 @@ button {
 }
 
 @media (max-width: 480px) {
+  /* Hide Venn SVG on very small screens — domain cards remain visible */
+  .whoiam-venn-container {
+    display: none;
+  }
+
+  .whoiam-content {
+    grid-template-columns: 1fr;
+  }
+
   .hero-image-wrapper {
     width: 260px;
     height: 320px;
@@ -5681,6 +6245,24 @@ body:has(.editor-toolbar.edit-mode-active) .navbar {
   color: var(--accent-primary) !important;
 }
 
+.navbar-link--active {
+  color: var(--accent-primary) !important;
+}
+
+.navbar-link--active::after {
+  width: 100% !important;
+}
+
+/* ================================
+   Light mode: Venn label contrast fixes
+   Yellow (#FFD93D) and light purple (#A78BFA) are too low-contrast on white
+   ================================ */
+[data-theme="light"] .venn-label-humanoid {
+  fill: #B45309 !important; /* amber-700: 3.7:1 on white, still warm/golden */
+}
+[data-theme="light"] .venn-label-industrial {
+  fill: #6D28D9 !important; /* violet-700: 4.5:1 on white */
+}
 
 
 /* ================================

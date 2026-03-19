@@ -2,9 +2,20 @@ import { Bot, Code, Wrench, Cpu, Cloud, Factory, User } from 'lucide-react'
 import { skills } from '../data/content'
 import { EditableText, EditableTags } from './Editable'
 import { useEdit } from '../context/EditContext'
+import TextScramble from './TextScramble'
+import OrbitingSkills from './OrbitingSkills'
+
+// Core skills to display in the orbital visualization
+const coreSkills = [
+  'SLAM', 'ROS 2', 'Python', 'C++', 'PyTorch',
+  'OpenCV', 'LiDAR', 'MuJoCo', 'Docker', 'Path Planning',
+  'Control Systems', 'Gazebo', 'TensorFlow', 'SolidWorks',
+  'Isaac Sim', 'CUDA', 'Sensor Fusion', 'PLC',
+  'Six Sigma', 'GD&T', 'Lean Mfg'
+]
 
 function Skills() {
-  const { getContent } = useEdit()
+  const { getContent, isEditMode } = useEdit()
 
   const icons = {
     personal: <User size={28} />,
@@ -29,6 +40,11 @@ function Skills() {
           </h2>
         </div>
 
+        {/* Orbital Skills Visualization */}
+        <div style={{ marginBottom: '64px' }}>
+          <OrbitingSkills skills={coreSkills} />
+        </div>
+
         <div className="skills-grid">
           {Object.entries(skills).map(([key, category]) => (
             <div className="skill-category" key={key}>
@@ -36,16 +52,26 @@ function Skills() {
                 {icons[key]}
               </div>
               <h3>
-                <EditableText 
-                  path={`skills.${key}.title`} 
+                <EditableText
+                  path={`skills.${key}.title`}
                   defaultValue={category.title}
                 />
               </h3>
-              <EditableTags 
-                path={`skills.${key}.items`} 
-                defaultValue={category.items}
-                className="skill-list"
-              />
+              {isEditMode ? (
+                <EditableTags
+                  path={`skills.${key}.items`}
+                  defaultValue={category.items}
+                  className="skill-list"
+                />
+              ) : (
+                <div className="skill-list">
+                  {(getContent(`skills.${key}.items`, category.items) || category.items).map((item, i) => (
+                    <span key={i} className="skill-item">
+                      <TextScramble text={item} trigger="scroll" duration={600 + i * 100} />
+                    </span>
+                  ))}
+                </div>
+              )}
             </div>
           ))}
         </div>

@@ -1,5 +1,15 @@
 export const blogPosts = [
     {
+        id: "being-an-international-student",
+        title: "The Mental Clutter of Being an International Student",
+        summary: "The hardest part of being an international student in a master's program while job searching isn't the workload — it's the mental clutter. Sharing what helped: time-blocking, daily shutdown lists, and giving yourself permission to ignore things. Clarity beats hustle, every time.",
+        date: "February 2026",
+        tags: ["International Students", "Grad School", "Productivity", "Career"],
+        readTime: "3 min read",
+        linkedinUrl: "https://www.linkedin.com/posts/shriman-raghav_internationalstudents-gradschool-productivity-activity-7429555351710060544-C0ZV",
+        featured: false,
+    },
+    {
         id: "engineering-journey",
         title: "Reflections on an 8-Month Engineering Journey at Tesla",
         summary: "A New Year reflection on growth, confidence, and milestones from an 8-month internship at Tesla's Fremont Factory — working on Autonomous Mobile Robots, SLAM, and material flow systems that reshaped my direction as an engineer.",

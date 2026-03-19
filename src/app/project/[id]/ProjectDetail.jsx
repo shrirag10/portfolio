@@ -8,6 +8,7 @@ import { EditableText, EditableImage } from '../../../components/Editable'
 import { useEdit, EditProvider } from '../../../context/EditContext'
 import Navbar from '../../../components/Navbar'
 import Footer from '../../../components/Footer'
+import VideoDialog from '../../../components/VideoDialog'
 
 function ProjectDetailContent({ id }) {
     const router = useRouter()
@@ -174,7 +175,8 @@ function ProjectDetailContent({ id }) {
                         background: 'linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-card) 100%)',
                         display: 'flex',
                         alignItems: 'center',
-                        justifyContent: 'center'
+                        justifyContent: 'center',
+                        position: 'relative'
                     }}
                 >
                     <EditableImage
@@ -183,6 +185,14 @@ function ProjectDetailContent({ id }) {
                         alt={project.title}
                         style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                     />
+                    {/* Video play button overlay */}
+                    {(project.video || project.demo) && (
+                        <VideoDialog
+                            posterImage={project.image}
+                            videoSrc={project.video || project.demo}
+                            alt={`${project.title} demo`}
+                        />
+                    )}
                 </div>
 
                 <div className="project-detail-content">

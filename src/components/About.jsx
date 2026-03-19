@@ -145,6 +145,7 @@ function About() {
                       fill={activeDomain && activeDomain !== d.id ? 'var(--text-muted)' : d.color}
                       fontSize={d.r > 22 ? 3.8 : 3.2} fontWeight="700"
                       fontFamily="var(--font-heading)"
+                      className={`venn-label-${d.id}`}
                       style={{ transition: 'all 0.3s ease', pointerEvents: 'none', textTransform: 'uppercase', letterSpacing: '0.05em' }}
                     >
                       {d.shortLines ? (
