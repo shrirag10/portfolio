@@ -6,7 +6,8 @@ import { useState, useEffect, useRef } from 'react'
  * AnimatedCounter — counts up from 0 to `target` when it scrolls into view.
  * Inspired by Magic UI Number Ticker.
  */
-function AnimatedCounter({ target, duration = 1500, suffix = '', prefix = '' }) {
+function AnimatedCounter({ target, value, duration = 1500, suffix = '', prefix = '', decimals = 0 }) {
+    const finalTarget = target ?? value ?? 0
     const [count, setCount] = useState(0)
     const [hasAnimated, setHasAnimated] = useState(false)
     const ref = useRef(null)
@@ -22,11 +23,12 @@ function AnimatedCounter({ target, duration = 1500, suffix = '', prefix = '' }) 
                         const progress = Math.min(elapsed / duration, 1)
                         // Ease out cubic for a satisfying deceleration
                         const eased = 1 - Math.pow(1 - progress, 3)
-                        setCount(Math.floor(eased * target))
+                        const current = eased * finalTarget
+                        setCount(decimals > 0 ? parseFloat(current.toFixed(decimals)) : Math.floor(current))
                         if (progress < 1) {
                             requestAnimationFrame(animate)
                         } else {
-                            setCount(target)
+                            setCount(finalTarget)
                         }
                     }
                     requestAnimationFrame(animate)
@@ -36,11 +38,13 @@ function AnimatedCounter({ target, duration = 1500, suffix = '', prefix = '' }) 
         )
         if (ref.current) observer.observe(ref.current)
         return () => observer.disconnect()
-    }, [target, duration, hasAnimated])
+    }, [finalTarget, duration, hasAnimated, decimals])
+
+    const display = decimals > 0 ? count.toFixed(decimals) : count
 
     return (
         <span ref={ref} className="animated-counter">
-            {prefix}{count}{suffix}
+            {prefix}{display}{suffix}
         </span>
     )
 }
